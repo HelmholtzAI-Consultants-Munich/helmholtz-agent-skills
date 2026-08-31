@@ -1,7 +1,7 @@
 # Advanced Agentic Skills for Science
 
-Agent skills for computational biology, built at the Institute of Computational Biology,
-Helmholtz Munich.
+Agent skills for scientific work across Helmholtz, started at the Institute of
+Computational Biology, Helmholtz Munich.
 
 They use the open [Agent Skills](https://agentskills.io) format, so they work in Claude Code,
 Cursor, Codex, Copilot, Gemini CLI, and anything else that reads `SKILL.md`, as well as in
@@ -74,10 +74,11 @@ DISABLE_TELEMETRY=1 npx skills add git@ascgitlab.helmholtz-munich.de:vladislav.s
 
 ## Recommended third-party skills
 
-| Skill | Source | License | Install |
+| Skill | What it does | Lives in | Install |
 |---|---|---|---|
-| `scanpy-scrna-seq` | [SciAgent-Skills](https://github.com/jaechang-hits/SciAgent-Skills/tree/main/skills/genomics-bioinformatics/single-cell) | CC-BY-4.0 | `npx skills add jaechang-hits/SciAgent-Skills@scanpy-scrna-seq` |
-| `nextflow-workflow-engine` | [SciAgent-Skills](https://github.com/jaechang-hits/SciAgent-Skills/tree/main/skills/scientific-computing) | Apache-2.0 | `npx skills add jaechang-hits/SciAgent-Skills@nextflow-workflow-engine` |
+| `grilling` | Interview the user relentlessly about a plan, decision, or idea until every branch of the design tree is resolved. | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling) | `npx skills add mattpocock/skills@grilling` |
+| `scanpy-scrna-seq` | Single-cell RNA-seq analysis with Scanpy. | [SciAgent-Skills](https://github.com/jaechang-hits/SciAgent-Skills/tree/main/skills/genomics-bioinformatics/single-cell) | `npx skills add jaechang-hits/SciAgent-Skills@scanpy-scrna-seq` |
+| `nextflow-workflow-engine` | Scalable bioinformatics workflows with Nextflow and nf-core. | [SciAgent-Skills](https://github.com/jaechang-hits/SciAgent-Skills/tree/main/skills/scientific-computing) | `npx skills add jaechang-hits/SciAgent-Skills@nextflow-workflow-engine` |
 
 ## Contributing
 

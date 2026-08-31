@@ -72,17 +72,21 @@
   ],
   "recommended_third_party": [
     {
+      "name": "grilling",
+      "source": "https://github.com/mattpocock/skills",
+      "path": "skills/productivity/grilling",
+      "about": "Relentless interview of a plan, decision, or idea until every branch of the design tree is resolved."
+    },
+    {
       "name": "scanpy-scrna-seq",
       "source": "https://github.com/jaechang-hits/SciAgent-Skills",
       "path": "skills/genomics-bioinformatics/single-cell",
-      "license": "CC-BY-4.0",
       "about": "Single-cell RNA-seq analysis with Scanpy."
     },
     {
       "name": "nextflow-workflow-engine",
       "source": "https://github.com/jaechang-hits/SciAgent-Skills",
       "path": "skills/scientific-computing",
-      "license": "Apache-2.0",
       "about": "Scalable bioinformatics workflows with Nextflow and nf-core."
     }
   ]
