@@ -10,7 +10,7 @@ is enabled.
 
 ## Upload a skill
 
-1. Open the [latest release](https://github.com/HelmholtzAI-Consultants-Munich/advanced-science-skills/releases/latest)
+1. Open the [latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest)
    and download the ZIPs you want. One ZIP is one skill.
 2. **Do not extract them.** The uploader expects the archive.
 3. In Claude Science or claude.ai, go to **Customize → Skills**, add a skill, and upload the ZIP.
@@ -27,7 +27,7 @@ the source repository and the commit it was built from:
 ```json
 {
   "skill": "dataset-scouting",
-  "source": "advanced-science-skills",
+  "source": "helmholtz-agent-skills",
   "commit": "a1b2c3d4…",
   "builtAt": "2026-08-29T09:00:00+00:00"
 }

@@ -16,7 +16,7 @@ We suggest using `npx skills` [(see official docs)](https://github.com/vercel-la
 Each source installs on its own. Take the ones you want:
 
 ```bash
-npx skills add HelmholtzAI-Consultants-Munich/advanced-science-skills
+npx skills add HelmholtzAI-Consultants-Munich/helmholtz-agent-skills
 npx skills add biocypher/biotope
 ```
 
@@ -27,7 +27,7 @@ user rather than the current project, and run `npx skills update` to refresh the
 ### Claude Science and claude.ai
 
 Claude Science cannot install from git. Download the ZIPs from the
-[latest release](https://github.com/HelmholtzAI-Consultants-Munich/advanced-science-skills/releases/latest),
+[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest),
 then in **Customize → Skills** add each one **without extracting it first**. One ZIP is one skill.
 
 Full walkthrough: [docs/claude-science.md](./docs/claude-science.md).
@@ -48,7 +48,7 @@ DISABLE_TELEMETRY=1 npx skills add git@ascgitlab.helmholtz-munich.de:vladislav.s
 
 | Skill | What it does | Lives in | Install |
 |---|---|---|---|
-| `dataset-scouting` | Screen public datasets before you download them: verify what metadata and raw data a study exposes, and record it as a sourced datasheet. | [here](./skills/dataset-scouting/SKILL.md) | `npx skills add HelmholtzAI-Consultants-Munich/advanced-science-skills@dataset-scouting` |
+| `dataset-scouting` | Screen public datasets before you download them: verify what metadata and raw data a study exposes, and record it as a sourced datasheet. | [here](./skills/dataset-scouting/SKILL.md) | `npx skills add HelmholtzAI-Consultants-Munich/helmholtz-agent-skills@dataset-scouting` |
 | `biotope-croissant` | Scans you messy data folder, maps all files, types, and fields inside them. Creates a standartized (croissan standard) map of all your data for easy mapping, agent-use, or audit. | [biocypher/biotope](https://github.com/biocypher/biotope) | `npx skills add biocypher/biotope@biotope-croissant` |
 | `biocypher` | Build knowledge graphs with BioCypher: adapters, schema config, multi-backend export. | [biocypher/biotope](https://github.com/biocypher/biotope) | `npx skills add biocypher/biotope@biocypher` |
 | `biochatter` | Query knowledge graphs, APIs and documents in natural language. | [biocypher/biotope](https://github.com/biocypher/biotope) | `npx skills add biocypher/biotope@biochatter` |
@@ -64,7 +64,7 @@ DISABLE_TELEMETRY=1 npx skills add git@ascgitlab.helmholtz-munich.de:vladislav.s
 
 | Skill | What it does | Lives in | Install |
 |---|---|---|---|
-| `pureclip-optimization` | Choose PureCLIP parameters on evidence, and judge whether the resulting crosslink calls are credible. | [here](./skills/pureclip-optimization/SKILL.md), until the PureCLIP maintainers' repo is settled | `npx skills add HelmholtzAI-Consultants-Munich/advanced-science-skills@pureclip-optimization` |
+| `pureclip-optimization` | Choose PureCLIP parameters on evidence, and judge whether the resulting crosslink calls are credible. | [here](./skills/pureclip-optimization/SKILL.md), until the PureCLIP maintainers' repo is settled | `npx skills add HelmholtzAI-Consultants-Munich/helmholtz-agent-skills@pureclip-optimization` |
 
 ### HPC cluster use
 
