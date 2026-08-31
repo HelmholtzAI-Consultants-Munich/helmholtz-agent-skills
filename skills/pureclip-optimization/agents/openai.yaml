@@ -1,0 +1,4 @@
+interface:
+  display_name: "PureCLIP Optimization"
+  short_description: "Choose PureCLIP parameters and judge the call set"
+  default_prompt: "Use $pureclip-optimization to pick PureCLIP parameters for this dataset and assess whether the resulting crosslink calls are credible."

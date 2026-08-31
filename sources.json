@@ -1,0 +1,89 @@
+{
+  "comment": [
+    "The registry of every skill in the collection, and where each one lives.",
+    "A skill lives with what it describes: tool skills in the tool's repo, method",
+    "skills here, site skills behind that site's access boundary.",
+    "",
+    "tier   public   | anyone can clone the source",
+    "       embargoed| private while the tool is in early development; goes public with it",
+    "       gated    | permanently access-controlled; never appears in a public artifact",
+    "pending  set when the source repo does not exist yet; the builder skips it"
+  ],
+  "sources": [
+    {
+      "name": "advanced-science-skills",
+      "tier": "public",
+      "type": "local",
+      "path": "skills",
+      "homepage": "https://github.com/HelmholtzAI-Consultants-Munich/advanced-science-skills",
+      "install": "npx skills add HelmholtzAI-Consultants-Munich/advanced-science-skills",
+      "note": "pureclip-optimization is hosted here temporarily. It belongs in the PureCLIP maintainers' repository, but the destination is unsettled: skrakau/PureCLIP is upstream 1.3.1 and johan-stph/PureCLIP is the maintained 2.0.4 fork with renamed short flags. The skill documents parameters, so it must follow whichever the maintainers ship.",
+      "about": "Method skills that belong to no single tool.",
+      "skills": [
+        "dataset-scouting",
+        "pureclip-optimization"
+      ]
+    },
+    {
+      "name": "biotope",
+      "tier": "public",
+      "type": "git",
+      "url": "https://github.com/biocypher/biotope.git",
+      "ref": "main",
+      "path": "skills",
+      "homepage": "https://github.com/biocypher/biotope",
+      "install": "npx skills add biocypher/biotope",
+      "about": "Croissant-described data to ontology-grounded BioCypher knowledge graphs.",
+      "skills": [
+        "biochatter",
+        "biocypher",
+        "biotope-croissant"
+      ]
+    },
+    {
+      "name": "virtual-human-chc",
+      "tier": "embargoed",
+      "type": "git",
+      "url": "git@github.com:HelmholtzAI-Consultants-Munich/virtual_human_chc.git",
+      "ref": "main",
+      "path": "skills",
+      "homepage": "https://github.com/HelmholtzAI-Consultants-Munich/virtual_human_chc",
+      "install": "npx skills add git@github.com:HelmholtzAI-Consultants-Munich/virtual_human_chc.git",
+      "about": "Helmholtz Munich model zoo — DinoBloom, Hyformer, ProtTrans and MolE embeddings.",
+      "skills": [
+        "model-search",
+        "model-embed"
+      ]
+    },
+    {
+      "name": "hmgu-hpc",
+      "tier": "gated",
+      "type": "git",
+      "url": "git@ascgitlab.helmholtz-munich.de:vladislav.samoilov/hmgu-hpc-skill.git",
+      "ref": "main",
+      "path": ".",
+      "homepage": "https://ascgitlab.helmholtz-munich.de/vladislav.samoilov/hmgu-hpc-skill",
+      "install": "DISABLE_TELEMETRY=1 npx skills add git@ascgitlab.helmholtz-munich.de:vladislav.samoilov/hmgu-hpc-skill.git",
+      "about": "The HMGU SLURM cluster: access, storage, partitions, GPU etiquette, job debugging.",
+      "skills": [
+        "hmgu-hpc"
+      ]
+    }
+  ],
+  "recommended_third_party": [
+    {
+      "name": "scanpy-scrna-seq",
+      "source": "https://github.com/jaechang-hits/SciAgent-Skills",
+      "path": "skills/genomics-bioinformatics/single-cell",
+      "license": "CC-BY-4.0",
+      "about": "Single-cell RNA-seq analysis with Scanpy."
+    },
+    {
+      "name": "nextflow-workflow-engine",
+      "source": "https://github.com/jaechang-hits/SciAgent-Skills",
+      "path": "skills/scientific-computing",
+      "license": "Apache-2.0",
+      "about": "Scalable bioinformatics workflows with Nextflow and nf-core."
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dataset Scouting"
+  short_description: "Screen public datasets before you download them"
+  default_prompt: "Use $dataset-scouting to build a sourced datasheet of candidate public datasets, their metadata and raw-data routes, and their acquisition readiness."
