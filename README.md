@@ -6,40 +6,35 @@ Cursor, Codex, Copilot, Gemini CLI, and anything else that reads `SKILL.md`
 
 ## Skills
 
-### Data handling
+#### Data handling
 
-Tools for finding, understanding and querying biomedical data.
+**[dataset-scouting](./docs/data-handling/dataset-scouting.md)** — Screen public datasets to check the availability of data and metadata, fit to your criteria, and URL correctness before downloading them.
 
-- **[dataset-scouting](./docs/data-handling/dataset-scouting.md)** — Screen public datasets to check the availability of data and metadata, fit to your criteria, and URL correctness before downloading them.
-- **[biotope-croissant](./docs/data-handling/biotope-croissant.md)** — Map a messy data folder into a standardized Croissant catalog of files, types and fields. Useful to making the data accessible to agents and building data harmonization loaders.
-- **[biocypher](./docs/data-handling/biocypher.md)** — Build biomedical knowledge graphs with BioCypher adapters, schema config and multi-backend export.
+**[biotope-croissant](./docs/data-handling/biotope-croissant.md)** — Map a messy data folder into a standardized Croissant catalog of files, types and fields. Useful to making the data accessible to agents and building data harmonization loaders.
 
-### Foundational AI models for biology
+**[biocypher](./docs/data-handling/biocypher.md)** — Build biomedical knowledge graphs with BioCypher adapters, schema config and multi-backend export.
 
-Helmholtz Munich foundation models for microscopy, proteins, peptides and molecules.
+#### Foundational AI models for biology
 
-- **[model-search](./docs/models/model-search.md)** — Find the right biological foundation model from the Helmholtz's Virtual Humans model collection. (🔒 Restricted Access: beta version, request access)
-- **[model-embed](./docs/models/model-embed.md)** — Have the agent properly load and run those models: Conda env setup, inference, and Apptainer runtimes. (🔒 Restricted Access: beta version, request access)
+**[model-search](./docs/models/model-search.md)** — Find the right biological foundation model from the Helmholtz's Virtual Humans model collection. (🔒 Restricted Access: beta version, request access)
 
-### Biological workflows
+**[model-embed](./docs/models/model-embed.md)** — Have the agent properly load and run those models: Conda env setup, inference, and Apptainer runtimes. (🔒 Restricted Access: beta version, request access)
 
-Domain-specific analysis workflows.
+#### Biological workflows
 
-- **[pureclip-optimization](./docs/biological-workflows/pureclip-optimization.md)** — Choose optimal PureCLIP parameters for protein-RNA binding sites extraction from eCLIP data.
+**[pureclip-optimization](./docs/biological-workflows/pureclip-optimization.md)** — Choose optimal PureCLIP parameters for protein-RNA binding sites extraction from eCLIP data.
 
-### HPC cluster use
+#### HPC cluster use
 
-Institute compute environments.
+**[hmgu-hpc](./docs/hpc/hmgu-hpc.md)** — Have agent reliably use the HMGU HPC cluster: access, storage, partitions, GPU etiquette, job dispatch and debugging. (🔒 Restricted Access: Helmholtz Munich SSO)
 
-- **[hmgu-hpc](./docs/hpc/hmgu-hpc.md)** — Have agent reliably use the HMGU HPC cluster: access, storage, partitions, GPU etiquette, job dispatch and debugging. (🔒 Restricted Access: Helmholtz Munich SSO)
+#### Recommended third-party skills
 
-### Recommended third-party skills
+**[grilling](./docs/third-party/grilling.md)** — Interview the user relentlessly about a plan until every branch of the design tree is resolved.
 
-Now our skills, but highly recommended.
+**[scanpy-scrna-seq](./docs/third-party/scanpy-scrna-seq.md)** — Single-cell RNA-seq analysis with Scanpy.
 
-- **[grilling](./docs/third-party/grilling.md)** — Interview the user relentlessly about a plan until every branch of the design tree is resolved.
-- **[scanpy-scrna-seq](./docs/third-party/scanpy-scrna-seq.md)** — Single-cell RNA-seq analysis with Scanpy.
-- **[nextflow-workflow-engine](./docs/third-party/nextflow-workflow-engine.md)** — Scalable bioinformatics workflows with Nextflow and nf-core.
+**[nextflow-workflow-engine](./docs/third-party/nextflow-workflow-engine.md)** — Scalable bioinformatics workflows with Nextflow and nf-core.
 
 ## Install
 
