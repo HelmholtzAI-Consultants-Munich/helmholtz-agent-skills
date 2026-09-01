@@ -2,8 +2,8 @@
 
 ## What it does
 
-Scans a messy data folder, maps all files, types and fields inside them, and produces a
-standardized Croissant catalog for mapping, agent use or audit.
+Map a messy data folder into a standardized Croissant catalog of files, types and fields. Useful to
+making the data accessible to agents and building data harmonization loaders.
 
 ## When to use / when not
 
@@ -18,6 +18,13 @@ For the full biotope pipeline — init, add, map, build — and Croissant-to-gra
 ```bash
 npx skills add biocypher/biotope@biotope-croissant
 ```
+
+## Install in Claude Science
+
+Download `biotope-croissant.zip` from the
+[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest).
+In **Customize → Skills**, add it **without extracting it first**.
+[Walkthrough](../claude-science.md).
 
 ## Source
 

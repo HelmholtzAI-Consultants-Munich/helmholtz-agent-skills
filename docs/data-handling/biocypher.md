@@ -2,8 +2,7 @@
 
 ## What it does
 
-Builds biomedical knowledge graphs with BioCypher: adapters, schema configuration, and export to
-Neo4j, CSV, PostgreSQL, RDF and other backends.
+Build biomedical knowledge graphs with BioCypher adapters, schema config and multi-backend export.
 
 ## When to use / when not
 
@@ -17,6 +16,13 @@ For natural-language queries over a built graph, see [biochatter](./biochatter.m
 ```bash
 npx skills add biocypher/biotope@biocypher
 ```
+
+## Install in Claude Science
+
+Download `biocypher.zip` from the
+[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest).
+In **Customize → Skills**, add it **without extracting it first**.
+[Walkthrough](../claude-science.md).
 
 ## Source
 
