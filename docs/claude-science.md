@@ -38,12 +38,17 @@ download the new ZIP and upload it again.
 
 ## Access-controlled skills
 
-`model-search`, `model-embed` and `hmgu-hpc` are not in the public release. Build their archives
-from the repository you have access to:
+`model-search`, `model-embed` and `hmgu-hpc` are not in the public release.
+
+`hmgu-hpc` ships its archive in its own repository. With Helmholtz GitLab access, download
+[`dist/hmgu-hpc.zip`](https://ascgitlab.helmholtz-munich.de/vladislav.samoilov/hmgu-hpc-skill/-/blob/main/dist/hmgu-hpc.zip)
+and upload it the same way.
+
+`model-search` and `model-embed` still have to be built from a clone you can access:
 
 ```bash
 git clone <the repository>
-python3 scripts/build_zips.py --only hmgu-hpc --source-root /path/to/that/clone
+python3 scripts/build_zips.py --only virtual-human-chc --source-root /path/to/that/clone
 ```
 
-Then upload `dist/hmgu-hpc.zip` the same way.
+Then upload the ZIPs under `dist/` the same way.

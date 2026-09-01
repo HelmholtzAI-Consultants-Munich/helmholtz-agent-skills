@@ -69,7 +69,7 @@ Discuss the scope with the user: the objective and its weights, the parameter sp
 
 A disappointing first sweep is normal and informative. A second is typically not enough either.
 
-Delegate numeric proposal to a sampler and spend your own effort on the space, the diagnostics and the interpretation; see [optimization.md](./references/optimization.md). Persist every trial as it completes, with its parameters, all components and all diagnostics.
+Delegate numeric sweep to a sampler and spend your own effort on the space, the diagnostics and the interpretation; see [optimization.md](./references/optimization.md).
 
 Start with a broad sparse sweep over the full plausible range: the overall bounds from prior runs, the footprint and yield the literature implies, and the axes the prior cohort never varied. Adapt to the incoming information. Explore well-motivated but unusual parameter sets when results stay poor.
 

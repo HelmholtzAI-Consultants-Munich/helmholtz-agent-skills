@@ -11,7 +11,7 @@ no committed copy to go stale.
 Embargoed and gated sources are skipped: CI has no credentials for them, and their
 content must not reach a public release. Build those from a local checkout instead.
 
-    python3 scripts/build_zips.py --source-root /path/to/checkout --only hmgu-hpc
+    python3 scripts/build_zips.py --source-root /path/to/checkout --only virtual-human-chc
 """
 
 from __future__ import annotations
