@@ -2,8 +2,8 @@
 
 ## What it does
 
-Screens public datasets before you download them. Verifies what metadata and raw data a study
-exposes, and records findings as a sourced datasheet.
+Screen public datasets to check the availability of data and metadata, fit to your criteria, and URL
+correctness before downloading them.
 
 ## When to use / when not
 
@@ -18,6 +18,13 @@ construction, see [biocypher](./biocypher.md) or [biotope-croissant](./biotope-c
 ```bash
 npx skills add HelmholtzAI-Consultants-Munich/helmholtz-agent-skills@dataset-scouting
 ```
+
+## Install in Claude Science
+
+Download `dataset-scouting.zip` from the
+[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest).
+In **Customize → Skills**, add it **without extracting it first**.
+[Walkthrough](../claude-science.md).
 
 ## Source
 

@@ -88,7 +88,9 @@ fix the `description`.
 
 Add an entry to [`sources.json`](./sources.json) with its repository, tier, and the skills it
 contains. Then add a human docs page at `docs/<category>/<skill>.md` (install command, access,
-source link) and one dense bullet in [README.md](./README.md).
+source link) and one dense bullet in [README.md](./README.md). Public skills also get an
+**Install in Claude Science** section linking the
+[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest).
 
 ### Listing fields
 
