@@ -1,127 +1,96 @@
 # Running the search
 
-The premise here is that numeric proposal should be delegated to a sampler and your
-effort spent on what surrounds it: the space, the budget, the diagnostics, and the
-interpretation. This file covers the surrounding parts.
+Mechanics of individual parameters are in `pureclip-parameters.md`; report structure and tone are in `report-format.md`. This file covers how to run the search.
 
-## Why a Bayesian sampler fits this problem
+## What you decide, and what the sampler decides
 
-The search space is small (a handful of integer and binary parameters), each evaluation
-is expensive relative to the cost of deciding what to try next, and there are no
-gradients. That is the regime sequential model-based optimization was built for. TPE
-(Bergstra et al. 2011) models the parameter distributions of high- and low-scoring
-trials separately and proposes candidates more likely under the high-scoring model;
-Optuna (Akiba et al. 2019, doi:10.1145/3292500.3330701) provides a seeded, reproducible
-implementation with pruning and persistent storage.
+The sampler proposes numbers. Everything that decides whether those numbers mean anything is yours: which parameters are in play, how wide the bounds are, whether the score measures what you think, and which candidate to recommend. A prior study on this task compared an LLM proposing parameter values against Tree-structured Parzen Estimator search, across 12 protein/cell-line pairs sharing a pipeline, an objective and bounds. TPE reached the higher score in 10 of 12. Supplying the LLM with RBP-specific biological context was worth a mean +0.004 on the objective, which is negligible. The comparison was not budget-matched, so it does not rank the two optimizers; it shows only that proposing numbers is not the best use of your effort. Details in `prior-runs.md`.
 
-Optuna is the pragmatic default because the storage and trial-record machinery is
-already what you need for the report. Random search over a well-chosen small box is a
-legitimate baseline — with a dozen evaluations and a good prior it is not obviously
-worse, and it parallelizes without coordination. Grid search is rarely justified here:
-it spends its budget uniformly on a landscape that is not uniformly interesting.
+Four jobs that study could not measure, and that no sampler performs:
 
-## Framing the space is the part that matters
+- **Framing the space.** A sampler explores the bounds it is given. Which parameters matter, which are fixed by the protocol, and where the plausible range sits for this protein are all settled before it starts.
+- **Noticing the score is being gamed.** A sampler maximizes whatever number it is given, including through mechanisms that inflate it without improving the biology. Four such mechanisms are documented below.
+- **Adjudicating between configurations the objective ranks as equivalent.** Yield trades against per-site quality inside the composite, so configurations scoring alike can differ in character. The score cannot choose between them; the user's question can.
+- **Assembling the evidence a domain expert needs to sign off**, including what remains uncertain.
 
-A sampler explores what it is given. Three decisions determine whether it succeeds, and
-none of them are the sampler's:
+## Frame the space before you search it
 
-**Which parameters are free.** Protocol-determined settings (mate selection, control
-usage, replicate handling) have correct answers and should be fixed — see
-`pureclip-parameters.md`. Every fixed parameter is budget redirected to a question that
-is actually open.
+**Which parameters are free.** Protocol-determined settings such as mate selection, input-control usage and replicate handling have correct answers, not ranges. Settle them from `pureclip-parameters.md` and fix them. Every parameter you fix frees budget for a question that is still open.
 
-**Where the bounds sit.** Prior runs give real ranges (`prior-runs.md`). Analogues
-are a prior for where to look first, not a box you stay inside. Start broad enough
-to cover the plausible range (overall prior-run bounds, literature-implied
-footprint and yield, axes the prior cohort never varied). Bounds cap what can be
-found — if the optimum sits at a bound, the box was wrong. Widen and keep going.
+**Where the bounds sit.** Prior runs give real ranges: `prior-runs.csv`, read alongside `prior-runs.md`. Treat analogues as a prior for where to look first, not as a box to stay inside. Start broad enough to cover the plausible range: the overall bounds across prior runs, the footprint and yield the literature implies for this protein, and the axes the prior cohort never varied. Bounds cap what can be found, so an optimum sitting on a bound means the box was wrong. Widen it and keep going rather than reporting the edge as an answer.
 
-**Whether parameters are redundant.** Merge distance, cluster gap, and width
-standardization all act on how nearby calls become footprints. With all three free, a
-sampler can trade them against each other and spend its budget wandering a ridge of
-equivalent configurations. Fixing one or coupling them is often better than exploring
-all three.
+**Which parameters are redundant.** Merge distance, cluster gap and width standardization all act on the same thing: how nearby calls become footprints. With all three free, a sampler can trade them against each other and spend its budget wandering a ridge of near-equivalent configurations. Fixing one, or coupling them, usually buys more than exploring all three.
 
-Log every trial's parameters, all objective components, and all diagnostics as a durable
-record — one row per trial, written as it completes. The trajectory is a required part of
-the report, the records are what makes a run auditable, and a search whose intermediate
-results were not persisted cannot be analyzed after the fact.
+## Pick the cheapest sampler that fits the problem
 
-## Budget and stopping
+The space is small, a handful of integer and binary parameters. Each evaluation is expensive relative to the cost of deciding what to try next, and there are no gradients. That is the regime sequential model-based optimization was built for.
 
-Two rules, both learned from prior runs going wrong:
+**Default: Optuna with TPE.** TPE (Bergstra et al. 2011) models the parameter distributions of high- and low-scoring trials separately and proposes candidates more likely under the high-scoring model. Optuna (Akiba et al. 2019, doi:10.1145/3292500.3330701) gives a seeded, reproducible implementation with pruning and persistent storage, and its trial-record machinery is already what the report needs.
 
-**A stopping threshold below the metric's resolution is meaningless.** Compute what one
-site is worth in composite units at your expected yield before setting a convergence
-threshold. Prior runs used a threshold of 0.01 on datasets where a single site was worth
-0.03–0.06 — every stop decision there was made on noise. If the quantum exceeds the
-threshold you want, fix the resolution (more scope, higher yield floor) rather than
-tightening the threshold.
+**Random search is a legitimate baseline, not a fallback.** Over a well-chosen small box, with a dozen evaluations and a good prior, it is not clearly worse than TPE. **Grid search is rarely justified here:** it spends its budget evenly across a landscape where most regions are uninformative.
 
-**Compare optimizers only at matched budget.** The prior study's headline result — TPE
-ahead in 10 of 12 pairs — came with TPE using 14–16 evaluations against the LLM's 5–9,
-which is why it establishes a protocol outcome and not an optimizer ranking. If you
-compare approaches, fix the number of successful evaluations and report wall-clock and
-cost separately. Note also that samplers with a startup phase (TPE typically draws
-~10 initial trials before its model contributes) need a budget several times that phase
-to be doing anything model-based at all — a 12-evaluation TPE run is mostly random
-search wearing a Bayesian label.
+**Trap: a TPE run too short to be Bayesian.** TPE typically draws about 10 initial trials at random before its model contributes anything, so a 12-evaluation run is mostly random search. Either budget several times the startup phase, or use random search and say so.
 
-Set the budget from trial cost and available parallelism, which means finding those out
-first. A budget chosen before knowing how long a trial takes is a guess that will be
-abandoned mid-run.
+Run trials in parallel if the compute allows. TPE handles concurrent trials with some loss of sequential information; random search loses nothing. With trial costs measured in hours, parallelism usually buys more than sampler sophistication.
 
-**Stopping the sampler is not stopping the analysis.** A flat landscape inside the
-current box means further trials *in that box* will fit noise. Reframe: widen
-bounds that were hit, open axes nobody varied, fix scoring if it cannot resolve
-the question, then another sparse pass. Stop when plausible variations have been
-exhausted — not after one extra wave, and not because wave 1 looked like a data
-problem.
+## Set the budget from measured cost, the stopping rule from measured resolution
 
-**Search in stages.** Broad sparse sweep over the plausible range, then
-concentrate on what moved. If that region fails qualitative review or sits on a
-bound, open the next plausible axis and sweep again. A single TPE run on the
-first box is stage one, not the procedure.
+Find out what one trial costs and how many can run at once before choosing a budget; one chosen before you know the cost will not hold.
 
-## Seeds, convergence, and what disagreement means
+**The stopping threshold cannot be finer than the metric's resolution.** Compute what one site is worth in composite units at your expected yield, then set the convergence threshold above it. Prior runs used a threshold of 0.01 on datasets where a single site was worth 0.03–0.06, so every stop decision there was made on noise. If one site is worth more than the difference you want to detect, fix the resolution with more genomic scope or a higher yield floor, rather than tightening the threshold. The mechanism is under "Differences below the metric's resolution".
 
-Seed the sampler and record the seed; an unreproducible search is not a result.
+**Trap: comparing approaches at unmatched budget.** The prior study's headline result, TPE ahead in 10 of 12 pairs, came with TPE using 14–16 evaluations against the LLM's 5–9. If you compare approaches, fix the number of successful evaluations and report wall-clock time and cost separately.
 
-Beyond reproducibility, run the search more than once from different starting points —
-different sampler seeds, and ideally different genomic subsets. If the runs converge to
-similar parameter regions, the objective is identifying a well-determined optimum and
-the answer is trustworthy. If they diverge, that is a genuine finding about the
-objective, not a nuisance: it means the landscape is flat or noisy at the scale you are
-searching, and the honest report says so rather than presenting whichever run scored
-highest. Divergence is also the cheapest available evidence that a scope or yield-floor
-choice was too aggressive.
+## Make every trial auditable and every failure cheap
 
-## Pruning and cost control
+Write one row per trial as it completes: the parameters, every objective component, every diagnostic. The trajectory is a required part of the report, and a search whose intermediate results were not persisted cannot be audited or reanalysed afterwards.
 
-Trials are expensive enough that early termination is worth wiring up, but the obvious
-implementation is wrong here: pruning on the composite mid-trial does not work, because
-the composite is only defined once the full call set exists.
+**Pruning on the composite mid-trial does not work**, because the composite is only defined once the full call set exists. What does work is failing fast on conditions that make a trial uninformative: a degenerate call set below the yield floor, a configuration that has already been evaluated, a run past a wall-clock ceiling. Where possible, detect them before the expensive stage. Cache completed configurations, since identical parameter sets recur in samplers and re-running one buys nothing.
 
-What does work is failing fast on conditions that make a trial uninformative — a
-degenerate call set below the yield floor, a configuration that has already been
-evaluated, a run that exceeds a wall-clock ceiling. Detect those before the expensive
-stage where possible. Also worth caching: identical parameter sets recur in samplers,
-and re-running a completed configuration buys nothing.
+## Distrust a gain you cannot explain
 
-If your compute allows parallel trials, use it — TPE handles concurrent trials with some
-loss of sequential information, and random search loses nothing. Given trial costs
-measured in hours, parallelism usually buys more than sampler sophistication.
+A rising composite is a hypothesis, not a result. Four mechanisms raise it without improving the call set, all of them observed in prior runs on this objective.
 
-## Reporting the search
+**Width inflation.** Post-processing parameters that widen or standardize intervals were the strongest predictor of the composite in prior runs, at ρ ≈ +0.62, and correlated ρ ≈ +0.46 with the reproducibility component. Wider intervals overlap more of everything, so they coincide with the other replicate and with reference regions more often, while single-nucleotide resolution degrades. Reproducibility recomputed at fixed site width exposes this. If gains track site width, they are probably not real.
 
-Beyond the best configuration, the search itself is evidence:
+**Motif hit rate without enrichment.** A hit rate means nothing except against shuffled sequence. One best-scoring prior configuration hit 0.286 at 1.3× enrichment, which is chance. Below roughly 2× enrichment, treat the motif term as noise and do not believe improvements in it.
 
-- Best-score trajectory against **both** evaluation count and wall-clock time. These
-  answer different questions (sample efficiency versus practical cost) and the first
-  alone hides an expensive search.
-- Which parameters the search actually moved, and which it converged on. A parameter
-  the sampler explored widely without score consequence is telling you the objective is
-  insensitive to it — which is information about the objective, and worth stating.
+**Yield standing in for quality.** Site count correlated ρ ≈ +0.82 with reference recall and ρ ≈ −0.40 with reproducibility across prior trials, so a change in the composite can be nothing but movement along that trade-off. In one prior run the composite improved while reference recall fell by a third. Read the decomposed components every time; an aggregate that rises while a component collapses is not an improvement.
+
+**Differences below the metric's resolution.** With a small call set, one site changing state moves the composite more than a typical convergence threshold. Prior runs at small scope yielded 12–22 sites, where one site was worth 0.03–0.06 of composite and the stopping rule triggered on 0.01. Compute what one site is worth at your expected yield before optimizing. If it exceeds the difference you want to detect, raise the yield floor, widen the genomic scope, or accept a coarser question.
+
+## Search in stages; stopping the sampler is not stopping the analysis
+
+Start with a broad sparse sweep over the plausible range, then concentrate on what moved. If that region fails the credibility review or sits on a bound, open the next plausible axis and sweep again. A single TPE run on the first box is stage one, not the procedure.
+
+A flat landscape inside the current box means further trials *in that box* will fit noise. That is a valid reason to stop the sampler and an invalid reason to stop the analysis. Reframe instead: widen bounds that were hit, open axes nobody varied, fix the scoring if it cannot resolve the question, then run another sparse pass. Stop when plausible variations are exhausted.
+
+**A worked case.** One 16-configuration sweep produced a composite spread comparable to chromosome-to-chromosome noise, about 20 sites, and motif enrichment near background. The agent concluded the library was thin and wrote the report. The same data produced a call set roughly three times better after a literature search, comparison with similar proteins, and three ideas the prior cohort had never tried: `min_region_length = 1`, `-antp`, and a correctly scoped reference-region file. The library was thin. That was not what limited the first sweep.
+
+## Reproduce before you believe
+
+Seed the sampler and record the seed; an unreproducible search is not a result. Beyond reproducibility, run the search more than once from different starting points: different sampler seeds, and ideally different genomic subsets. If the runs converge to similar parameter regions, the objective is identifying a well-determined optimum and the answer is trustworthy. If they diverge, that is a finding about the objective, not a nuisance. It means the landscape is flat or noisy at the scale you are searching, and the report should say so instead of presenting whichever run scored highest. Divergence is also the cheapest available evidence that a scope or yield-floor choice was too aggressive.
+
+## Rank with the score, decide with the review
+
+Apply this credibility review to the top candidates after ranking, and keep its checks out of the score. Not all apply to every protein; the test is whether you can say why this call set is credible.
+
+- **Site count** plausible for the protein's known binding breadth, not merely above the yield floor.
+- **Width distribution** not pinned at the ceiling post-processing imposes. A spike at the maximum is the width-inflation signature.
+- **Score distribution** with an inflection separating confident calls from the bulk. Monotone decay suggests the HMM is not separating its two states.
+- **Genomic distribution** matching known biology: 3'UTR enrichment for a 3'UTR-binding regulator, 3' splice site proximity for a splicing factor. Often the most informative single check, and absent from the composite.
+- **Motif enrichment** clearing background before the motif component is believed.
+- **Stability across seeds and genomic subsets**, as in "Reproduce before you believe".
+- **The user's genes and regions of interest** behaving sensibly. Collect them early and keep them out of the score: a single gene that looks wrong to a domain expert can invalidate a run, and scoring against it destroys its value as an independent check.
+
+A lower-scoring configuration that passes review beats a higher-scoring one that fails. Say which you chose and why, and show the decomposed components and diagnostics with every composite.
+
+## Report the search, not only the winner
+
+The search itself is evidence. Beyond the best configuration, report:
+
+- Best-score trajectory against **both** evaluation count and wall-clock time. The two answer different questions: sample efficiency and practical cost. Evaluation count alone hides an expensive search.
+- Which parameters the search actually moved, and which it converged on. A parameter the sampler explored widely without score consequence shows the objective is insensitive to it, which is worth stating.
 - Where the optimum sits relative to the bounds.
 - Agreement or disagreement across seeds.
 - The trial records themselves, so a reader can recompute anything.
