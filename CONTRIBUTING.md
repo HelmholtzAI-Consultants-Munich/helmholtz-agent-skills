@@ -87,7 +87,20 @@ fix the `description`.
 ## Adding a source to the index
 
 Add an entry to [`sources.json`](./sources.json) with its repository, tier, and the skills it
-contains, then add a row to the README table.
+contains. Then add a human docs page at `docs/<category>/<skill>.md` (install command, access,
+source link) and one dense bullet in [README.md](./README.md).
+
+### Listing fields
+
+Each README bullet and docs page should stay scannable:
+
+- **One-line description** — 120 characters or fewer, user-facing (not the agent trigger list from
+  `SKILL.md` frontmatter).
+- **Access** — omit when public. Restricted skills: a parenthetical on the README line
+  (e.g. `(Restricted Access: …)`), and an **Access** section on the docs page.
+  Helmholtz covers both `embargoed` and `gated` tiers in `sources.json`.
+
+Install commands live on the skill's docs page, not in the README listing.
 
 | Tier | Meaning |
 |---|---|
@@ -102,8 +115,3 @@ the index and is skipped by the build.
 `build_zips.py` builds `public` sources only, and refuses to package one containing gated
 markers (`scidom.de`, `hpc-submit`, `ascgitlab`, `digit-hpc@`, `/lustre/groups`). If that check
 fires, remove the content or move the skill to the gated tier. Do not disable the check.
-
-## Install instructions
-
-Install commands live in `README.md` and nowhere else. Link to it from other documents rather
-than repeating the commands, so there is only ever one copy to keep correct.
