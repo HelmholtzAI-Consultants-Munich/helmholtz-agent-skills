@@ -13,6 +13,15 @@ That structure is the reason parameters behave the way they do, and it is worth 
 in mind: most of these settings are not thresholds on the output, they are inputs to a
 fit. Changing them changes what the model believes background looks like.
 
+## Contents
+
+- What is determined by the protocol, and should be fixed
+- The parameters worth searching
+- Post-processing of raw calls
+- Output
+- Memory and runtime
+- Installation
+
 ## What is determined by the protocol, and should be fixed
 
 Getting these wrong produces symptoms that look like tuning problems and are not. Settle

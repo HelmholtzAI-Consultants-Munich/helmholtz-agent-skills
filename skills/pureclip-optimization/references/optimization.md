@@ -1,8 +1,101 @@
 # Running the search
 
-The premise here is that numeric proposal should be delegated to a sampler and your
-effort spent on what surrounds it: the space, the budget, the diagnostics, and the
-interpretation. This file covers the surrounding parts.
+## Contents
+
+- What you are for, and what the sampler is for
+- Why a Bayesian sampler fits this problem
+- Framing the space is the part that matters
+- Budget and stopping
+- One wave is not enough: a worked case
+- Seeds, convergence, and what disagreement means
+- Pruning and cost control
+- Reporting the search
+
+## What you are for, and what the sampler is for
+
+Delegate numeric proposal to a sampler and spend your effort on what surrounds it: the
+space, the budget, the diagnostics, and the interpretation.
+
+A prior study on this task compared an LLM proposing parameter values against
+Tree-structured Parzen Estimator search, across 12 protein/cell-line pairs sharing a
+pipeline, an objective and bounds. TPE reached the higher score in 10 of 12. Supplying
+the LLM with RBP-specific biological context was worth a mean +0.004 on the objective,
+which is nothing. The comparison was not budget-matched, so it does not rank the two
+optimizers; what it establishes is that proposing numbers is not where your effort pays.
+Details in `prior-runs.md`.
+
+Four things that study could not measure, which are yours:
+
+- **Framing the search space.** A sampler explores the bounds it is given. Which
+  parameters matter, which are fixed by the protocol, and where the plausible range sits
+  for this protein are all settled before it starts.
+- **Noticing the objective is being gamed.** A sampler maximizes the number it is given,
+  including through mechanisms that inflate the number without improving the biology.
+  Those mechanisms are listed in SKILL.md; recognizing one in a live run is judgement.
+- **Adjudicating between configurations the objective ranks as equivalent.** The
+  objective has two optima with different biological character. It cannot choose between
+  them; the user's question can.
+- **Assembling the evidence a domain expert needs to sign off**, including what remains
+  uncertain.
+
+### How the score misleads
+
+**Width inflation.** Post-processing parameters that widen or standardize intervals were
+the strongest predictor of the composite in prior runs, at ρ ≈ +0.62, and ρ ≈ +0.46 with
+the reproducibility component. Wider intervals overlap more of everything, so they hit
+the other replicate and the reference regions more often while single-nucleotide
+resolution degrades. Reproducibility at fixed width exposes this. If gains track site
+width, they are probably not real.
+
+**Motif hit rate without enrichment.** A hit rate means nothing except against shuffled
+sequence. One best-scoring prior configuration hit 0.286 at 1.3× enrichment, which is
+chance. Below roughly 2× enrichment, treat the motif term as noise.
+
+**Yield standing in for quality.** Site count correlated ρ ≈ +0.82 with reference recall
+and ρ ≈ −0.40 with reproducibility across prior trials, so a change in the composite can
+be nothing but movement along that trade-off. In one prior run the composite improved
+while reference recall fell by a third. Read the decomposed components every time.
+
+**Differences below the metric's resolution.** With a small call set, one site changing
+state moves the composite more than a typical convergence threshold. Prior runs at small
+scope yielded 12–22 sites, where one site was worth 0.03–0.06 of composite and the
+stopping rule triggered on 0.01. Compute what one site is worth at your expected yield
+before optimizing. If it exceeds the improvement you mean to detect, raise the yield
+floor, widen the genomic scope, or accept a coarser question.
+
+### Credibility review
+
+Apply these to the top candidates after ranking, and keep them out of the score. Not all
+apply to every protein; the test is whether you can say why this call set is credible.
+
+- **Site count** plausible for the protein's known binding breadth, not merely above the
+  yield floor.
+- **Width distribution** not pinned at the ceiling post-processing imposes. A spike at
+  the maximum is the width-inflation signature.
+- **Score distribution** with an inflection separating confident calls from the bulk.
+  Monotone decay suggests the HMM is not separating its two states.
+- **Genomic distribution** matching known biology: 3'UTR enrichment for a 3'UTR-binding
+  regulator, 3' splice site proximity for a splicing factor. Often the most informative
+  single check, and absent from the composite.
+- **Motif enrichment** clearing background before the motif component is believed.
+- **Stability across seeds and genomic subsets.** Runs from different starting points
+  should land in the same region of parameter space. Divergence means the objective is
+  not identifying a well-determined optimum; report it as a finding.
+- **The user's genes and regions of interest** behaving sensibly. Collect them early and
+  keep them out of the score: a single gene that looks wrong to a domain expert can
+  invalidate a run, and scoring against it destroys its value as an independent check.
+
+Preferring a lower-scoring configuration that passes review over a higher-scoring one
+that fails is the right outcome. Say which you chose and why, and show the decomposed
+components and diagnostics with every composite.
+
+The objective has two optima with comparable scores and different biological character: a
+high-yield regime that recovers most reference regions at weaker per-site sequence
+support, and a high-confidence regime with fewer sites, better replicate agreement and
+stronger motif enrichment. The weights decide which one wins, not the protein. When
+candidates split this way, put the choice to the user: a conservative set of sites they
+would defend individually, or broad coverage of the regions where the protein acts. See
+[prior-runs.md](./references/prior-runs.md).
 
 ## Why a Bayesian sampler fits this problem
 
@@ -82,6 +175,17 @@ problem.
 concentrate on what moved. If that region fails qualitative review or sits on a
 bound, open the next plausible axis and sweep again. A single TPE run on the
 first box is stage one, not the procedure.
+
+## One wave is not enough: a worked case
+
+One 16-configuration wave produced a composite spread comparable to chromosome-to-chromosome
+noise, about 20 sites, and motif enrichment near background. The agent concluded the
+library was thin and wrote the report.
+
+The same data, after a literature search, comparison with similar proteins, and three
+ideas the prior cohort had never tried, namely `min_region_length = 1`, `-antp` and a
+correctly scoped reference-region file, produced a call set roughly three times better.
+The library was thin. That was not what limited wave 1.
 
 ## Seeds, convergence, and what disagreement means
 

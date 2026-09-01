@@ -103,6 +103,55 @@ the index and is skipped by the build.
 markers (`scidom.de`, `hpc-submit`, `ascgitlab`, `digit-hpc@`, `/lustre/groups`). If that check
 fires, remove the content or move the skill to the gated tier. Do not disable the check.
 
+## Publishing a release
+
+`main` is protected: land changes through a pull request, then tag the merged commit. Pushing a
+`v*` tag is not a push to `main`, and is what publishes. Do not tag a feature branch — a squash
+or merge commit on `main` is a different SHA.
+
+Coding harnesses install from git and do not need a release. A release exists for Claude Science,
+which can only take ZIP uploads; see [docs/claude-science.md](./docs/claude-science.md).
+
+### 1. Land the change on `main`
+
+Open a PR, wait for lint, merge it. Fetch so `origin/main` is the commit you mean to ship:
+
+```bash
+git fetch origin
+git log -1 --oneline origin/main
+```
+
+### 2. Tag that commit and push the tag
+
+Versions are SemVer. First release is `v0.1.0`. After that: patch for wording and fixes in
+existing skills, minor for a new public skill or a behaviour change, major for a break in the
+ZIP layout or the install story. Never move a tag that already exists; cut the next version.
+
+```bash
+git tag v0.1.0 origin/main
+git push origin v0.1.0
+```
+
+If the tag push is rejected (tag rules), create the same tag in the GitHub UI instead: **Releases
+→ Draft a new release**, tag `v0.1.0` targeting `main`, leave the assets empty, and publish.
+Creating the tag still fires the workflow; CI attaches the ZIPs.
+
+### 3. Confirm CI built the archives
+
+The `release` workflow runs on the tag, packages every public skill (local ones here, plus
+cloned public sources), and creates the GitHub release from `dist/RELEASE_NOTES.md`. Check
+[Actions](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/actions)
+and
+[Releases](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases).
+You should see one ZIP per public skill (`dataset-scouting.zip`, `pureclip-optimization.zip`,
+and the biotope skills).
+
+To dry-run the build without publishing, run the `release` workflow from the Actions tab
+(**Run workflow**). That uploads `dist/` as an artifact and does not create a release.
+
+Embargoed and gated skills are never in this artifact. Build those from their own repository
+as [docs/claude-science.md](./docs/claude-science.md) describes.
+
 ## Install instructions
 
 Install commands live in `README.md` and nowhere else. Link to it from other documents rather

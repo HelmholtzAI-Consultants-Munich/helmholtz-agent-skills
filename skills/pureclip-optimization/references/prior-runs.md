@@ -3,6 +3,16 @@
 Companion to `prior-runs.csv`. The CSV holds numbers; this file holds the reasons they
 are or are not useful. Reading the CSV alone will mislead you.
 
+## Contents
+
+- Provenance and the size of the grain of salt
+- The single most useful finding: two distinct optima
+- Example ranges across the 14 best configurations
+- Two cautions about the parameter–score relationship
+- Binding classes, and why the classification disappointed
+- Per-protein notes
+- What the optimizer comparison actually showed
+
 ## Provenance and the size of the grain of salt
 
 Source: a student project (ML4rg group 08, TUM / Helmholtz Munich, July 2026) that ran
