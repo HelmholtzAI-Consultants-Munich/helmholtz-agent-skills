@@ -5,7 +5,6 @@ Computational Biology, Helmholtz Munich. Work in Claude Code,
 Cursor, Codex, Copilot, Gemini CLI, and anything else that reads `SKILL.md`
 
 ## Skills
----
 
 ### Data handling
 
@@ -43,7 +42,6 @@ Now our skills, but highly recommended.
 - **[nextflow-workflow-engine](./docs/third-party/nextflow-workflow-engine.md)** — Scalable bioinformatics workflows with Nextflow and nf-core.
 
 ## Install
----
 
 ### Coding harnesses: Claude Code, Cursor, Codex, etc.
 
@@ -75,10 +73,8 @@ then in **Customize → Skills** add each one **without extracting it first**. O
 Full walkthrough: [docs/claude-science.md](./docs/claude-science.md).
 
 ## Contributing
----
 [CONTRIBUTING.md](./CONTRIBUTING.md) covers writing a skill, the format limits, and how to add a
 source to the index.
 
 ## License
----
 [Apache-2.0](./LICENSE); only applies to not access-restricted skills.
