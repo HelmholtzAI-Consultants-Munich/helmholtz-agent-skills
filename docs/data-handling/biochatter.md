@@ -18,6 +18,13 @@ Does not build graphs — that is [biocypher](./biocypher.md) or the biotope pip
 npx skills add biocypher/biotope@biochatter
 ```
 
+## Install in Claude Science
+
+Download `biochatter.zip` from the
+[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest).
+In **Customize → Skills**, add it **without extracting it first**.
+[Walkthrough](../claude-science.md).
+
 ## Source
 
 - [biotope/skills/biochatter](https://github.com/biocypher/biotope/tree/main/skills/biochatter)

@@ -2,8 +2,7 @@
 
 ## What it does
 
-Chooses PureCLIP and post-processing parameters for CLIP datasets, then judges whether the
-resulting crosslink call set is credible.
+Choose optimal PureCLIP parameters for protein-RNA binding sites extraction from eCLIP data.
 
 ## When to use / when not
 
@@ -17,6 +16,13 @@ Hosted here temporarily until the PureCLIP maintainers' repository is settled.
 ```bash
 npx skills add HelmholtzAI-Consultants-Munich/helmholtz-agent-skills@pureclip-optimization
 ```
+
+## Install in Claude Science
+
+Download `pureclip-optimization.zip` from the
+[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest).
+In **Customize → Skills**, add it **without extracting it first**.
+[Walkthrough](../claude-science.md).
 
 ## Source
 
