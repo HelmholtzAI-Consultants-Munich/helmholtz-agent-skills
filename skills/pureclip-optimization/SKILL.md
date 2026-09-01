@@ -89,7 +89,7 @@ Write for a domain expert who will accept or reject the result, and for whoever 
 
 ## References
 - [pureclip-parameters.md](./references/pureclip-parameters.md) — steps 1 and 4: what each parameter does to the model, which are determined by the protocol, memory and runtime levers.
-- [prior-runs.md](./references/prior-runs.md) — steps 1, 4 and 5: what the curated runs mean, the two optima, per-protein binding behaviour with primary literature. Read it before the CSV; the numbers mislead on their own.
+- [prior-runs.md](./references/prior-runs.md) — steps 1, 4 and 5: binding mechanism per protein family with primary literature, what the cohort showed about the objective, and how to read the CSV. Read it before the CSV; the numbers mislead on their own.
 - [prior-runs.csv](./references/prior-runs.csv) — best-known configurations for 14 protein/cell-line pairs, with decomposed scores. Shipped reference material; your own runs belong in your outputs.
 - [optimization.md](./references/optimization.md) — steps 3, 4 and 5: the division of labour between you and the sampler, sampler choice, framing the space, budget and stopping rules, seeds, cost control.
 - [report-format.md](./references/report-format.md) — step 6: what the report and side notes contain, how they are structured, and how they are written.

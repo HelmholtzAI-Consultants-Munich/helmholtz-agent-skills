@@ -10,7 +10,7 @@ Four jobs that study could not measure, and that no sampler performs:
 
 - **Framing the space.** A sampler explores the bounds it is given. Which parameters matter, which are fixed by the protocol, and where the plausible range sits for this protein are all settled before it starts.
 - **Noticing the score is being gamed.** A sampler maximizes whatever number it is given, including through mechanisms that inflate it without improving the biology. Four such mechanisms are documented below.
-- **Adjudicating between configurations the objective ranks as equivalent.** The objective has two optima with different biological character. It cannot choose between them; the user's question can.
+- **Adjudicating between configurations the objective ranks as equivalent.** Yield trades against per-site quality inside the composite, so configurations scoring alike can differ in character. The score cannot choose between them; the user's question can.
 - **Assembling the evidence a domain expert needs to sign off**, including what remains uncertain.
 
 ## Frame the space before you search it
@@ -84,8 +84,6 @@ Apply this credibility review to the top candidates after ranking, and keep its 
 - **The user's genes and regions of interest** behaving sensibly. Collect them early and keep them out of the score: a single gene that looks wrong to a domain expert can invalidate a run, and scoring against it destroys its value as an independent check.
 
 A lower-scoring configuration that passes review beats a higher-scoring one that fails. Say which you chose and why, and show the decomposed components and diagnostics with every composite.
-
-**The two optima.** The objective has two optima with comparable scores and different biological character: a high-yield regime that recovers most reference regions at weaker per-site sequence support, and a high-confidence regime with fewer sites, better replicate agreement and stronger motif enrichment. The weights decide which one wins, not the protein. When candidates split this way, put the choice to the user: a conservative set of sites they would defend individually, or broad coverage of the regions where the protein acts. Per-protein detail is in `prior-runs.md`.
 
 ## Report the search, not only the winner
 
