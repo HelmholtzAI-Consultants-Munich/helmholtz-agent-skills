@@ -11,7 +11,7 @@ Cursor, Codex, Copilot, Gemini CLI, and anything else that reads `SKILL.md`
 
 Tools for finding, understanding and querying biomedical data.
 
-- **[dataset-scouting](./docs/data-handling/dataset-scouting.md)** — Screen public datasets before downloading them and produce a sourced datasheet.
+- **[dataset-scouting](./docs/data-handling/dataset-scouting.md)** — Screen public datasets for the availability of data, links and metadata before downloading them.
 - **[biotope-croissant](./docs/data-handling/biotope-croissant.md)** — Map a messy data folder into a standardized Croissant catalog of files, types and fields.
 - **[biocypher](./docs/data-handling/biocypher.md)** — Build biomedical knowledge graphs with BioCypher adapters, schema config and multi-backend export.
 - **[biochatter](./docs/data-handling/biochatter.md)** — Query knowledge graphs, APIs and documents in natural language.
@@ -20,8 +20,8 @@ Tools for finding, understanding and querying biomedical data.
 
 Helmholtz Munich foundation models for microscopy, proteins, peptides and molecules.
 
-- **[model-search](./docs/models/model-search.md)** — Find the right biological foundation model for a task. (Restricted Access: beta version, request access)
-- **[model-embed](./docs/models/model-embed.md)** — Run those models: embeddings, Conda and Apptainer runtimes. (Restricted Access: beta version, request access)
+- **[model-search](./docs/models/model-search.md)** — Find the right biological foundation model for a task. (🔒 Restricted Access: beta version, request access)
+- **[model-embed](./docs/models/model-embed.md)** — Run those models: embeddings, Conda and Apptainer runtimes. (🔒 Restricted Access: beta version, request access)
 
 ### Biological workflows
 
@@ -33,7 +33,7 @@ Domain-specific analysis workflows.
 
 Institute compute environments.
 
-- **[hmgu-hpc](./docs/hpc/hmgu-hpc.md)** — The HMGU SLURM cluster: access, storage, partitions, GPU etiquette, job debugging. (Restricted Access: Helmholtz Munich SSO)
+- **[hmgu-hpc](./docs/hpc/hmgu-hpc.md)** — The HMGU SLURM cluster: access, storage, partitions, GPU etiquette, job debugging. (🔒 Restricted Access: Helmholtz Munich SSO)
 
 ### Recommended third-party skills
 
