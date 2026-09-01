@@ -12,16 +12,15 @@ Cursor, Codex, Copilot, Gemini CLI, and anything else that reads `SKILL.md`
 Tools for finding, understanding and querying biomedical data.
 
 - **[dataset-scouting](./docs/data-handling/dataset-scouting.md)** — Screen public datasets to check the availability of data and metadata, fit to your criteria, and URL correctness before downloading them.
-- **[biotope-croissant](./docs/data-handling/biotope-croissant.md)** — Map a messy data folder into a standardized Croissant catalog of files, types and fields.
+- **[biotope-croissant](./docs/data-handling/biotope-croissant.md)** — Map a messy data folder into a standardized Croissant catalog of files, types and fields. Useful to making the data accessible to agents and building data harmonization loaders.
 - **[biocypher](./docs/data-handling/biocypher.md)** — Build biomedical knowledge graphs with BioCypher adapters, schema config and multi-backend export.
-- **[biochatter](./docs/data-handling/biochatter.md)** — Query knowledge graphs, APIs and documents in natural language.
 
 ### Foundational AI models for biology
 
 Helmholtz Munich foundation models for microscopy, proteins, peptides and molecules.
 
-- **[model-search](./docs/models/model-search.md)** — Find the right biological foundation model for a task. (🔒 Restricted Access: beta version, request access)
-- **[model-embed](./docs/models/model-embed.md)** — Run those models: embeddings, Conda and Apptainer runtimes. (🔒 Restricted Access: beta version, request access)
+- **[model-search](./docs/models/model-search.md)** — Find the right biological foundation model from the Helmholtz's Virtual Humans model collection. (🔒 Restricted Access: beta version, request access)
+- **[model-embed](./docs/models/model-embed.md)** — Have the agent properly load and run those models: Conda env setup, inference, and Apptainer runtimes. (🔒 Restricted Access: beta version, request access)
 
 ### Biological workflows
 
@@ -33,7 +32,7 @@ Domain-specific analysis workflows.
 
 Institute compute environments.
 
-- **[hmgu-hpc](./docs/hpc/hmgu-hpc.md)** — The HMGU SLURM cluster: access, storage, partitions, GPU etiquette, job debugging. (🔒 Restricted Access: Helmholtz Munich SSO)
+- **[hmgu-hpc](./docs/hpc/hmgu-hpc.md)** — Have agent reliably use the HMGU HPC cluster: access, storage, partitions, GPU etiquette, job dispatch and debugging. (🔒 Restricted Access: Helmholtz Munich SSO)
 
 ### Recommended third-party skills
 
@@ -46,16 +45,15 @@ Now our skills, but highly recommended.
 ## Install
 ---
 
+### Coding harnesses: Claude Code, Cursor, Codex, etc.
+
 We suggest using `npx skills` [(see official docs)](https://github.com/vercel-labs/skills).
 
 Each skill lives in its own repository. The installer asks which skills to take and which agents
-to install them into, writes them to `.agents/skills/`, and symlinks them into every harness it
-detects. Add `-g` to install for your user rather than the current project, and run
+to install them into. Add `-g` to install flobally rather than the current project, and run
 `npx skills update` to refresh them later.
 
 Open any skill above for its exact install command.
-
-### Coding harnesses: Claude Code, Cursor, Codex, etc.
 
 ```bash
 npx skills add <source>@<skill>
@@ -75,11 +73,6 @@ Claude Science cannot install from git. Download the ZIPs from the
 then in **Customize → Skills** add each one **without extracting it first**. One ZIP is one skill.
 
 Full walkthrough: [docs/claude-science.md](./docs/claude-science.md).
-
-### Access-controlled skills
-
-Same command, against the repository that holds them. `npx skills` authenticates through your
-existing git credential helper, `gh`, or SSH key; without access, the clone fails.
 
 ## Contributing
 ---
