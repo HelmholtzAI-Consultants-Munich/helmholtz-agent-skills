@@ -1,30 +1,74 @@
 # Advanced Agentic Skills for Science
 
 Agent skills for scientific work across Helmholtz, started at the Institute of
-Computational Biology, Helmholtz Munich.
+Computational Biology, Helmholtz Munich. Work in Claude Code,
+Cursor, Codex, Copilot, Gemini CLI, and anything else that reads `SKILL.md`
 
-They use the open [Agent Skills](https://agentskills.io) format, so they work in Claude Code,
-Cursor, Codex, Copilot, Gemini CLI, and anything else that reads `SKILL.md`, as well as in
-Claude Science.
+## Skills
+---
+
+### Data handling
+
+Tools for finding, understanding and querying biomedical data.
+
+- **[dataset-scouting](./docs/data-handling/dataset-scouting.md)** — Screen public datasets before downloading them and produce a sourced datasheet.
+- **[biotope-croissant](./docs/data-handling/biotope-croissant.md)** — Map a messy data folder into a standardized Croissant catalog of files, types and fields.
+- **[biocypher](./docs/data-handling/biocypher.md)** — Build biomedical knowledge graphs with BioCypher adapters, schema config and multi-backend export.
+- **[biochatter](./docs/data-handling/biochatter.md)** — Query knowledge graphs, APIs and documents in natural language.
+
+### Foundational AI models for biology
+
+Helmholtz Munich foundation models for microscopy, proteins, peptides and molecules.
+
+- **[model-search](./docs/models/model-search.md)** — Find the right biological foundation model for a task. (Restricted Access: beta version, request access)
+- **[model-embed](./docs/models/model-embed.md)** — Run those models: embeddings, Conda and Apptainer runtimes. (Restricted Access: beta version, request access)
+
+### Biological workflows
+
+Domain-specific analysis workflows.
+
+- **[pureclip-optimization](./docs/biological-workflows/pureclip-optimization.md)** — Choose optimal PureCLIP parameters for protein-RNA binding sites extraction from eCLIP data.
+
+### HPC cluster use
+
+Institute compute environments.
+
+- **[hmgu-hpc](./docs/hpc/hmgu-hpc.md)** — The HMGU SLURM cluster: access, storage, partitions, GPU etiquette, job debugging. (Restricted Access: Helmholtz Munich SSO)
+
+### Recommended third-party skills
+
+Now our skills, but highly recommended.
+
+- **[grilling](./docs/third-party/grilling.md)** — Interview the user relentlessly about a plan until every branch of the design tree is resolved.
+- **[scanpy-scrna-seq](./docs/third-party/scanpy-scrna-seq.md)** — Single-cell RNA-seq analysis with Scanpy.
+- **[nextflow-workflow-engine](./docs/third-party/nextflow-workflow-engine.md)** — Scalable bioinformatics workflows with Nextflow and nf-core.
 
 ## Install
+---
 
 We suggest using `npx skills` [(see official docs)](https://github.com/vercel-labs/skills).
 
+Each skill lives in its own repository. The installer asks which skills to take and which agents
+to install them into, writes them to `.agents/skills/`, and symlinks them into every harness it
+detects. Add `-g` to install for your user rather than the current project, and run
+`npx skills update` to refresh them later.
+
+Open any skill above for its exact install command.
+
 ### Coding harnesses: Claude Code, Cursor, Codex, etc.
 
-Each source installs on its own. Take the ones you want:
+```bash
+npx skills add <source>@<skill>
+```
+
+Examples:
 
 ```bash
 npx skills add HelmholtzAI-Consultants-Munich/helmholtz-agent-skills
 npx skills add biocypher/biotope
 ```
 
-The installer asks which skills to take and which agents to install them into, writes them to
-`.agents/skills/`, and symlinks them into every harness it detects. Add `-g` to install for your
-user rather than the current project, and run `npx skills update` to refresh them later.
-
-### Claude Science and claude.ai
+### Claude Science and Claude Web App
 
 Claude Science cannot install from git. Download the ZIPs from the
 [latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest),
@@ -37,53 +81,11 @@ Full walkthrough: [docs/claude-science.md](./docs/claude-science.md).
 Same command, against the repository that holds them. `npx skills` authenticates through your
 existing git credential helper, `gh`, or SSH key; without access, the clone fails.
 
-```bash
-npx skills add git@github.com:HelmholtzAI-Consultants-Munich/virtual_human_chc.git
-DISABLE_TELEMETRY=1 npx skills add git@ascgitlab.helmholtz-munich.de:vladislav.samoilov/hmgu-hpc-skill.git
-```
-
-## The skills
-
-### Data handling
-
-| Skill | What it does | Lives in | Install |
-|---|---|---|---|
-| `dataset-scouting` | Screen public datasets before you download them: verify what metadata and raw data a study exposes, and record it as a sourced datasheet. | [here](./skills/dataset-scouting/SKILL.md) | `npx skills add HelmholtzAI-Consultants-Munich/helmholtz-agent-skills@dataset-scouting` |
-| `biotope-croissant` | Scans you messy data folder, maps all files, types, and fields inside them. Creates a standartized (croissan standard) map of all your data for easy mapping, agent-use, or audit. | [biocypher/biotope](https://github.com/biocypher/biotope) | `npx skills add biocypher/biotope@biotope-croissant` |
-| `biocypher` | Build knowledge graphs with BioCypher: adapters, schema config, multi-backend export. | [biocypher/biotope](https://github.com/biocypher/biotope) | `npx skills add biocypher/biotope@biocypher` |
-| `biochatter` | Query knowledge graphs, APIs and documents in natural language. | [biocypher/biotope](https://github.com/biocypher/biotope) | `npx skills add biocypher/biotope@biochatter` |
-
-### Foundational AI Models for Biology
-
-| Skill | What it does | Lives in | Install |
-|---|---|---|---|
-| `model-search` | Pick a model from the Helmholtz Munich zoo: DinoBloom, Hyformer, ProtTrans, MolE. | [virtual_human_chc](https://github.com/HelmholtzAI-Consultants-Munich/virtual_human_chc), *access required* | `npx skills add git@github.com:HelmholtzAI-Consultants-Munich/virtual_human_chc.git --skill model-search` |
-| `model-embed` | Run those models: embeddings, Conda/Apptainer runtimes. | [virtual_human_chc](https://github.com/HelmholtzAI-Consultants-Munich/virtual_human_chc), *access required* | `npx skills add git@github.com:HelmholtzAI-Consultants-Munich/virtual_human_chc.git --skill model-embed` |
-
-### Biological workflows
-
-| Skill | What it does | Lives in | Install |
-|---|---|---|---|
-| `pureclip-optimization` | Choose PureCLIP parameters on evidence, and judge whether the resulting crosslink calls are credible. | [here](./skills/pureclip-optimization/SKILL.md), until the PureCLIP maintainers' repo is settled | `npx skills add HelmholtzAI-Consultants-Munich/helmholtz-agent-skills@pureclip-optimization` |
-
-### HPC cluster use
-
-| Skill | What it does | Lives in | Install |
-|---|---|---|---|
-| `hmgu-hpc` | The HMGU SLURM cluster: getting access, storage layout, partitions and QoS, GPU etiquette, why your job is stuck. | [HMGU GitLab](https://ascgitlab.helmholtz-muenchen.de/vladislav.samoilov/hmgu-hpc-skill), *Helmholtz login required* | `DISABLE_TELEMETRY=1 npx skills add git@ascgitlab.helmholtz-munich.de:vladislav.samoilov/hmgu-hpc-skill.git` |
-
-## Recommended third-party skills
-
-| Skill | What it does | Lives in | Install |
-|---|---|---|---|
-| `grilling` | Interview the user relentlessly about a plan, decision, or idea until every branch of the design tree is resolved. | [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling) | `npx skills add mattpocock/skills@grilling` |
-| `scanpy-scrna-seq` | Single-cell RNA-seq analysis with Scanpy. | [SciAgent-Skills](https://github.com/jaechang-hits/SciAgent-Skills/tree/main/skills/genomics-bioinformatics/single-cell) | `npx skills add jaechang-hits/SciAgent-Skills@scanpy-scrna-seq` |
-| `nextflow-workflow-engine` | Scalable bioinformatics workflows with Nextflow and nf-core. | [SciAgent-Skills](https://github.com/jaechang-hits/SciAgent-Skills/tree/main/skills/scientific-computing) | `npx skills add jaechang-hits/SciAgent-Skills@nextflow-workflow-engine` |
-
 ## Contributing
-
+---
 [CONTRIBUTING.md](./CONTRIBUTING.md) covers writing a skill, the format limits, and how to add a
 source to the index.
 
 ## License
+---
 [Apache-2.0](./LICENSE); only applies to not access-restricted skills.
