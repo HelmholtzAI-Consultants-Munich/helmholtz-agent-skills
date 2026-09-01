@@ -13,7 +13,7 @@ is enabled.
 1. Open the [latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest)
    and download the ZIPs you want. One ZIP is one skill.
 2. **Do not extract them.** The uploader expects the archive.
-3. In Claude Science or claude.ai, go to **Customize → Skills**, add a skill, and upload the ZIP.
+3. In Claude Science or the Claude Web App, go to **Customize → Skills**, add a skill, and upload the ZIP.
 4. Repeat for each skill. They appear within a few moments.
 
 To confirm one landed, look for its directory under
