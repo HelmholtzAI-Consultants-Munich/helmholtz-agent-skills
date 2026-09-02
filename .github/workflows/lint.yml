@@ -18,3 +18,5 @@ jobs:
         run: python3 scripts/lint_skills.py
       - name: Validate the registry parses
         run: python3 -c "import json; json.load(open('sources.json'))"
+      - name: Validate the marketplace layout
+        run: python3 scripts/verify_marketplace.py

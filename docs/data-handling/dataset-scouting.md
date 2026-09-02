@@ -21,12 +21,15 @@ npx skills add HelmholtzAI-Consultants-Munich/helmholtz-agent-skills@dataset-sco
 
 ## Install in Claude Science
 
-Download `dataset-scouting.zip` from the
-[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest).
-In **Customize → Skills**, add it **without extracting it first**.
+**Skills → Add skill → Import from GitHub**, then paste:
+
+```
+https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills
+```
+
 [Walkthrough](../claude-science.md).
 
 ## Source
 
-- [SKILL.md](../../skills/dataset-scouting/SKILL.md) in this repository
+- [SKILL.md](../../plugins/method-skills/skills/dataset-scouting/SKILL.md) in this repository
 - [helmholtz-agent-skills](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills)

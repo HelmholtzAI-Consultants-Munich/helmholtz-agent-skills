@@ -21,10 +21,19 @@ npx skills add git@github.com:HelmholtzAI-Consultants-Munich/virtual_human_chc.g
 ## Access
 
 Helmholtz — requires access to the
-[virtual_human_chc](https://github.com/HelmholtzAI-Consultants-Munich/virtual_human_chc)
-repository (GitHub login with permission).
+[vhmodels](https://github.com/HelmholtzAI-Consultants-Munich/vhmodels)
+repository (GitHub login with permission). The clone URL may still be
+`virtual_human_chc`.
+
+## Install in Claude Science
+
+**Skills → Add skill → Import from GitHub**, then paste (needs repository access):
+
+```
+https://github.com/HelmholtzAI-Consultants-Munich/vhmodels
+```
 
 ## Source
 
-- [virtual_human_chc](https://github.com/HelmholtzAI-Consultants-Munich/virtual_human_chc)
+- [vhmodels](https://github.com/HelmholtzAI-Consultants-Munich/vhmodels)
 - Skill path: `skills/model-search/`

@@ -1,0 +1,6 @@
+{
+  "name": "method-skills",
+  "version": "0.1.0",
+  "description": "Method skills that belong to no single tool — dataset scouting and PureCLIP parameter optimization.",
+  "author": { "name": "Helmholtz AI Consultants Munich" }
+}

@@ -19,9 +19,12 @@ npx skills add biocypher/biotope@biocypher
 
 ## Install in Claude Science
 
-Download `biocypher.zip` from the
-[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest).
-In **Customize → Skills**, add it **without extracting it first**.
+**Skills → Add skill → Import from GitHub**, then paste:
+
+```
+https://github.com/biocypher/biotope
+```
+
 [Walkthrough](../claude-science.md).
 
 ## Source

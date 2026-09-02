@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check skill directories against the Agent Skills format and Anthropic's limits.
 
-Run over this repo's own skills:
+Run over this repo's own plugins:
 
     python3 scripts/lint_skills.py
 
@@ -193,8 +193,8 @@ def main() -> int:
         "root",
         nargs="?",
         type=Path,
-        default=Path(__file__).resolve().parent.parent / "skills",
-        help="directory to search for skills (default: this repo's skills/)",
+        default=Path(__file__).resolve().parent.parent / "plugins",
+        help="directory to search for skills (default: this repo's plugins/)",
     )
     args = parser.parse_args()
 
