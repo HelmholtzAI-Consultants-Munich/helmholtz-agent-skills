@@ -27,8 +27,11 @@ repository.
 
 ## Install in Claude Science
 
-Claude Science GitHub import cannot fetch Helmholtz GitLab. Install with `npx skills` from a
-machine that has GitLab access.
+Claude Science GitHub import cannot fetch Helmholtz GitLab. With GitLab access, open
+https://ascgitlab.helmholtz-munich.de/vladislav.samoilov/hmgu-hpc-skill
+and download
+[`dist/hmgu-hpc.zip`](https://ascgitlab.helmholtz-munich.de/vladislav.samoilov/hmgu-hpc-skill/-/blob/main/dist/hmgu-hpc.zip?ref_type=heads).
+**Skills → Add skill → Upload a skill**, drop the ZIP without extracting it.
 
 ## Source
 

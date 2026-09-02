@@ -37,5 +37,7 @@ To confirm one landed, look for its directory under
 https://github.com/HelmholtzAI-Consultants-Munich/vhmodels
 ```
 
-`hmgu-hpc` lives on Helmholtz GitLab. Claude Science GitHub import cannot fetch it; install
-with `npx skills` from a machine that has GitLab access (see [hmgu-hpc](./hpc/hmgu-hpc.md)).
+`hmgu-hpc` lives on Helmholtz GitLab. Claude Science GitHub import cannot fetch it. With GitLab
+access, open https://ascgitlab.helmholtz-munich.de/vladislav.samoilov/hmgu-hpc-skill and download
+[`dist/hmgu-hpc.zip`](https://ascgitlab.helmholtz-munich.de/vladislav.samoilov/hmgu-hpc-skill/-/blob/main/dist/hmgu-hpc.zip?ref_type=heads),
+then **Skills → Add skill → Upload a skill** without extracting it. See [hmgu-hpc](./hpc/hmgu-hpc.md).
