@@ -21,9 +21,11 @@ npx skills add biocypher/biotope@biotope-croissant
 
 ## Install in Claude Science
 
-Download `biotope-croissant.zip` from the
-[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest).
-In **Customize → Skills**, add it **without extracting it first**.
+Import `HelmholtzAI-Consultants-Munich/helmholtz-agent-skills` under
+**Skills → Add skill → Import from GitHub**.
+ZIP fallback: `biotope-croissant.zip` from the
+[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest),
+**without extracting it first**.
 [Walkthrough](../claude-science.md).
 
 ## Source

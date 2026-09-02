@@ -19,6 +19,13 @@ This is a third-party skill from mattpocock/skills. For a user-invoked variant, 
 npx skills add mattpocock/skills@grilling
 ```
 
+## Install in Claude Science
+
+Import `HelmholtzAI-Consultants-Munich/helmholtz-agent-skills` under
+**Skills → Add skill → Import from GitHub**. That installs the curated `grilling` plugin, not
+every skill in mattpocock/skills.
+[Walkthrough](../claude-science.md).
+
 ## Source
 
 - [mattpocock/skills — grilling](https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling)

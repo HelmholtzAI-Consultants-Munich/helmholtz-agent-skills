@@ -74,9 +74,13 @@ Open any skill above for its exact install command.
 
 ### Claude Science and Claude Web App
 
-Claude Science cannot install from git. Download the ZIPs from the
-[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest),
-then in **Customize → Skills** add each one **without extracting it first**. One ZIP is one skill.
+**Skills → Add skill → Import from GitHub**, then paste
+`HelmholtzAI-Consultants-Munich/helmholtz-agent-skills` (`owner/repo`, `owner/repo@ref`, or a
+github.com URL). Preview and install the plugins you want.
+
+ZIP upload from the
+[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest)
+is the fallback: add each archive **without extracting it first**. One ZIP is one skill.
 
 Full walkthrough: [docs/claude-science.md](./docs/claude-science.md).
 

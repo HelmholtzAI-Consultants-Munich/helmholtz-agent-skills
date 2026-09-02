@@ -102,9 +102,10 @@ contains. Public catalog entries also go in
 
 Embargoed and gated sources stay in `sources.json` only. Then add a human docs page at
 `docs/<category>/<skill>.md` (install command, access, source link) and one dense bullet in
-[README.md](./README.md). Public skills also get an
-**Install in Claude Science** section linking the
-[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest).
+[README.md](./README.md). Public skills also get an **Install in Claude Science** section:
+GitHub import of this marketplace first, ZIP from the
+[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest)
+as fallback.
 
 ### Listing fields
 
@@ -138,8 +139,9 @@ fires, remove the content or move the skill to the gated tier. Do not disable th
 `v*` tag is not a push to `main`, and is what publishes. Do not tag a feature branch — a squash
 or merge commit on `main` is a different SHA.
 
-Coding harnesses install from git and do not need a release. A release exists for Claude Science,
-which can only take ZIP uploads; see [docs/claude-science.md](./docs/claude-science.md).
+Coding harnesses install from git and do not need a release. A release still exists as the
+Claude Science ZIP fallback; GitHub import of this marketplace is the primary Science route.
+See [docs/claude-science.md](./docs/claude-science.md).
 
 ### 1. Land the change on `main`
 
@@ -183,5 +185,6 @@ as [docs/claude-science.md](./docs/claude-science.md) describes.
 
 ## Install instructions
 
-Install commands live in `README.md` and nowhere else. Link to it from other documents rather
-than repeating the commands, so there is only ever one copy to keep correct.
+Global install routes live in [README.md](./README.md) and
+[docs/claude-science.md](./docs/claude-science.md). Per-skill `npx` commands and Science notes
+live on each skill's docs page.

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Build one Claude Science upload archive per public skill.
 
-Claude Science cannot install from git; skills get there as ZIP uploads, one skill
-per ZIP. Public sources are fetched at build time rather than vendored, so there is
-no committed copy to go stale.
+Claude Science can import this marketplace from GitHub. The ZIP route remains a
+fallback: one skill per archive, uploaded without extracting. Public sources are
+fetched at build time rather than vendored, so there is no committed copy to go stale.
 
     python3 scripts/build_zips.py              # -> dist/*.zip + dist/RELEASE_NOTES.md
     python3 scripts/build_zips.py --only biotope
@@ -190,8 +190,11 @@ def release_notes(built: list[dict], registry: dict) -> str:
     lines = [
         "# Claude Science skill archives",
         "",
-        "One ZIP per skill. In Claude Science or claude.ai, go to **Customize > Skills**,",
-        "add a skill, and upload the ZIP **without extracting it first**.",
+        "Primary route: **Skills → Add skill → Import from GitHub** and paste",
+        "`HelmholtzAI-Consultants-Munich/helmholtz-agent-skills`.",
+        "",
+        "ZIP fallback: one archive per skill. In Claude Science, **Skills → Add skill →",
+        "Upload a skill**, and drop the ZIP **without extracting it first**.",
         "",
         "| Skill | From | Commit |",
         "|---|---|---|",

@@ -17,6 +17,13 @@ This is a third-party skill from SciAgent-Skills, not maintained in this reposit
 npx skills add jaechang-hits/SciAgent-Skills@scanpy-scrna-seq
 ```
 
+## Install in Claude Science
+
+Import `HelmholtzAI-Consultants-Munich/helmholtz-agent-skills` under
+**Skills → Add skill → Import from GitHub**. That installs the curated `scanpy` plugin, not
+the whole SciAgent-Skills repository.
+[Walkthrough](../claude-science.md).
+
 ## Source
 
 - [SciAgent-Skills — single-cell](https://github.com/jaechang-hits/SciAgent-Skills/tree/main/skills/genomics-bioinformatics/single-cell)
