@@ -25,6 +25,8 @@ S = (0.50 · R_rep + 0.25 · R_motif + 0.25 · R_ref) · min(1, n / n_floor)
 
 Keep the default weights unless the user agrees to change them.
 
+TODO: some proteins can have interesting and valuable properties to optimize towards (applicable only to this protein), e.g. QKI motif within ±15 nt. Need to make sure the agent is flexible enough and can surface it to the user.
+
 ### Additional diagnostics
 Compute these every trial and report them next to the composite for sanity check. Not the optimization target.
 - Motif enrichment over shuffled background, not the hit rate alone
