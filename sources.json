@@ -14,7 +14,7 @@
       "name": "helmholtz-agent-skills",
       "tier": "public",
       "type": "local",
-      "path": "skills",
+      "path": "plugins/method-skills/skills",
       "homepage": "https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills",
       "install": "npx skills add HelmholtzAI-Consultants-Munich/helmholtz-agent-skills",
       "note": "pureclip-optimization is hosted here temporarily. It belongs in the PureCLIP maintainers' repository, but the destination is unsettled: skrakau/PureCLIP is upstream 1.3.1 and johan-stph/PureCLIP is the maintained 2.0.4 fork with renamed short flags. The skill documents parameters, so it must follow whichever the maintainers ship.",

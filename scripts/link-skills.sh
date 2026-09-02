@@ -14,11 +14,11 @@ set -euo pipefail
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 DESTS=("$HOME/.claude/skills" "$HOME/.agents/skills")
 
-mapfile -t SKILLS < <(find "$REPO/skills" -name SKILL.md -mindepth 2 -maxdepth 2 -print0 |
+mapfile -t SKILLS < <(find "$REPO/plugins" -path '*/skills/*/SKILL.md' -print0 |
   xargs -0 -n1 dirname | sort)
 
 if [ ${#SKILLS[@]} -eq 0 ]; then
-  echo "no skills found under $REPO/skills" >&2
+  echo "no skills found under $REPO/plugins" >&2
   exit 1
 fi
 

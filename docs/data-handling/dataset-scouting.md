@@ -28,5 +28,5 @@ In **Customize → Skills**, add it **without extracting it first**.
 
 ## Source
 
-- [SKILL.md](../../skills/dataset-scouting/SKILL.md) in this repository
+- [SKILL.md](../../plugins/method-skills/skills/dataset-scouting/SKILL.md) in this repository
 - [helmholtz-agent-skills](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills)
