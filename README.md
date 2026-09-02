@@ -40,13 +40,24 @@ Cursor, Codex, Copilot, Gemini CLI, and anything else that reads `SKILL.md`
 
 ### Coding harnesses: Claude Code, Cursor, Codex, etc.
 
-We suggest using `npx skills` [(see official docs)](https://github.com/vercel-labs/skills).
+This repository is a plugin marketplace ([`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)).
+Claude Code and Codex can add it and install plugins separately:
 
-Each skill lives in its own repository. The installer asks which skills to take and which agents
-to install them into. Add `-g` to install flobally rather than the current project, and run
-`npx skills update` to refresh them later.
+```bash
+claude plugin marketplace add https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills
+claude plugin install method-skills@helmholtz-agent-skills
+```
 
-Open any skill above for its exact install command.
+Adding the marketplace does not install every plugin. Public GitHub plugins such as `biotope`
+are fetched from their upstream repositories; skill-only third-party entries use a subdirectory
+of their source repo.
+
+For Cursor and other `SKILL.md` harnesses, use `npx skills` [(see official docs)](https://github.com/vercel-labs/skills).
+The installer asks which skills to take and which agents to install them into. Add `-g` to
+install globally rather than the current project, and run `npx skills update` to refresh them later.
+
+`npx skills` only resolves local marketplace paths, so it installs this repo's method skills.
+Add other sources the same way:
 
 ```bash
 npx skills add <source>@<skill>
@@ -59,11 +70,18 @@ npx skills add HelmholtzAI-Consultants-Munich/helmholtz-agent-skills
 npx skills add biocypher/biotope
 ```
 
+Open any skill above for its exact install command.
+
 ### Claude Science and Claude Web App
 
-Claude Science cannot install from git. Download the ZIPs from the
-[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest),
-then in **Customize → Skills** add each one **without extracting it first**. One ZIP is one skill.
+**Skills → Add skill → Import from GitHub**, then paste the repository URL:
+
+```
+https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills
+```
+
+Preview and install the plugins you want. For a single upstream plugin, paste that repo's URL
+instead (for example `https://github.com/biocypher/biotope`).
 
 Full walkthrough: [docs/claude-science.md](./docs/claude-science.md).
 

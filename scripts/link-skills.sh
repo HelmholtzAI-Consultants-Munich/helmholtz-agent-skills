@@ -9,16 +9,16 @@ set -euo pipefail
 #   ~/.agents/skills  — Codex, and every other Agent Skills harness
 #
 # Claude Science is absent because its skill directories are server-managed and will
-# discard a symlink. Upload a ZIP from dist/ instead; see docs/claude-science.md.
+# discard a symlink. Import the GitHub URL instead; see docs/claude-science.md.
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 DESTS=("$HOME/.claude/skills" "$HOME/.agents/skills")
 
-mapfile -t SKILLS < <(find "$REPO/skills" -name SKILL.md -mindepth 2 -maxdepth 2 -print0 |
+mapfile -t SKILLS < <(find "$REPO/plugins" -path '*/skills/*/SKILL.md' -print0 |
   xargs -0 -n1 dirname | sort)
 
 if [ ${#SKILLS[@]} -eq 0 ]; then
-  echo "no skills found under $REPO/skills" >&2
+  echo "no skills found under $REPO/plugins" >&2
   exit 1
 fi
 

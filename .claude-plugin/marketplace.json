@@ -1,0 +1,78 @@
+{
+  "name": "helmholtz-agent-skills",
+  "owner": { "name": "Helmholtz AI Consultants Munich" },
+  "description": "Agent skills for scientific work across Helmholtz",
+  "plugins": [
+    {
+      "name": "method-skills",
+      "version": "0.1.0",
+      "source": "./plugins/method-skills",
+      "skills": [
+        "./skills/dataset-scouting",
+        "./skills/pureclip-optimization"
+      ],
+      "description": "Method skills that belong to no single tool"
+    },
+    {
+      "name": "biotope",
+      "version": "0.8.0",
+      "source": {
+        "source": "github",
+        "repo": "biocypher/biotope"
+      },
+      "skills": [
+        "./skills/biochatter",
+        "./skills/biocypher",
+        "./skills/biotope-croissant"
+      ],
+      "description": "Croissant→BioCypher knowledge-graph construction"
+    },
+    {
+      "name": "scanpy",
+      "version": "0.1.0",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/jaechang-hits/SciAgent-Skills.git",
+        "path": "skills/genomics-bioinformatics/single-cell"
+      },
+      "skills": [
+        "./scanpy-scrna-seq"
+      ],
+      "strict": false,
+      "description": "Single-cell RNA-seq analysis with Scanpy",
+      "repository": "https://github.com/jaechang-hits/SciAgent-Skills",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "name": "nextflow",
+      "version": "0.1.0",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/jaechang-hits/SciAgent-Skills.git",
+        "path": "skills/scientific-computing"
+      },
+      "skills": [
+        "./nextflow-workflow-engine"
+      ],
+      "strict": false,
+      "description": "Scalable bioinformatics workflows with Nextflow and nf-core",
+      "repository": "https://github.com/jaechang-hits/SciAgent-Skills",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "grilling",
+      "version": "0.1.0",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/mattpocock/skills.git",
+        "path": "skills/productivity"
+      },
+      "skills": [
+        "./grilling"
+      ],
+      "strict": false,
+      "description": "Relentless interview of a plan until every design branch is resolved",
+      "repository": "https://github.com/mattpocock/skills"
+    }
+  ]
+}
