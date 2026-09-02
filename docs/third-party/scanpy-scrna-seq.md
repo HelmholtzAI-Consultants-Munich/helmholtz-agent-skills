@@ -19,9 +19,13 @@ npx skills add jaechang-hits/SciAgent-Skills@scanpy-scrna-seq
 
 ## Install in Claude Science
 
-Import `HelmholtzAI-Consultants-Munich/helmholtz-agent-skills` under
-**Skills → Add skill → Import from GitHub**. That installs the curated `scanpy` plugin, not
-the whole SciAgent-Skills repository.
+**Skills → Add skill → Import from GitHub**, then paste:
+
+```
+https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills
+```
+
+That installs the curated `scanpy` plugin, not the whole SciAgent-Skills repository.
 [Walkthrough](../claude-science.md).
 
 ## Source

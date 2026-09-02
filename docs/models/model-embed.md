@@ -26,10 +26,11 @@ repository (GitHub login with permission). The clone URL may still be
 
 ## Install in Claude Science
 
-Import `HelmholtzAI-Consultants-Munich/vhmodels` under
-**Skills → Add skill → Import from GitHub** (needs repository access).
-ZIP fallback: build from a clone you can access, as
-[docs/claude-science.md](../claude-science.md) describes.
+**Skills → Add skill → Import from GitHub**, then paste (needs repository access):
+
+```
+https://github.com/HelmholtzAI-Consultants-Munich/vhmodels
+```
 
 ## Source
 

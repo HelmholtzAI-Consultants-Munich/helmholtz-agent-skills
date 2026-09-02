@@ -6,8 +6,8 @@
     "",
     "tier   public   | anyone can clone the source",
     "       embargoed| private while the tool is in early development; goes public with it",
-    "       gated    | permanently access-controlled; never appears in a public artifact",
-    "pending  set when the source repo does not exist yet; the builder skips it"
+    "       gated    | permanently access-controlled; not listed in the public marketplace",
+    "pending  set when the source repo does not exist yet; it shows in the index only"
   ],
   "sources": [
     {

@@ -9,7 +9,7 @@ set -euo pipefail
 #   ~/.agents/skills  — Codex, and every other Agent Skills harness
 #
 # Claude Science is absent because its skill directories are server-managed and will
-# discard a symlink. Upload a ZIP from dist/ instead; see docs/claude-science.md.
+# discard a symlink. Import the GitHub URL instead; see docs/claude-science.md.
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 DESTS=("$HOME/.claude/skills" "$HOME/.agents/skills")

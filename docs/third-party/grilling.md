@@ -21,9 +21,13 @@ npx skills add mattpocock/skills@grilling
 
 ## Install in Claude Science
 
-Import `HelmholtzAI-Consultants-Munich/helmholtz-agent-skills` under
-**Skills → Add skill → Import from GitHub**. That installs the curated `grilling` plugin, not
-every skill in mattpocock/skills.
+**Skills → Add skill → Import from GitHub**, then paste:
+
+```
+https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills
+```
+
+That installs the curated `grilling` plugin, not every skill in mattpocock/skills.
 [Walkthrough](../claude-science.md).
 
 ## Source

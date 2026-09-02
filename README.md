@@ -74,13 +74,14 @@ Open any skill above for its exact install command.
 
 ### Claude Science and Claude Web App
 
-**Skills → Add skill → Import from GitHub**, then paste
-`HelmholtzAI-Consultants-Munich/helmholtz-agent-skills` (`owner/repo`, `owner/repo@ref`, or a
-github.com URL). Preview and install the plugins you want.
+**Skills → Add skill → Import from GitHub**, then paste the repository URL:
 
-ZIP upload from the
-[latest release](https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills/releases/latest)
-is the fallback: add each archive **without extracting it first**. One ZIP is one skill.
+```
+https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills
+```
+
+Preview and install the plugins you want. For a single upstream plugin, paste that repo's URL
+instead (for example `https://github.com/biocypher/biotope`).
 
 Full walkthrough: [docs/claude-science.md](./docs/claude-science.md).
 
