@@ -59,11 +59,11 @@
       "name": "hmgu-hpc",
       "tier": "gated",
       "type": "git",
-      "url": "git@ascgitlab.helmholtz-munich.de:vladislav.samoilov/hmgu-hpc-skill.git",
+      "url": "https://ascgitlab.helmholtz-munich.de/vladislav.samoilov/hmgu-hpc-skill.git",
       "ref": "main",
       "path": ".",
       "homepage": "https://ascgitlab.helmholtz-munich.de/vladislav.samoilov/hmgu-hpc-skill",
-      "install": "DISABLE_TELEMETRY=1 npx skills add git@ascgitlab.helmholtz-munich.de:vladislav.samoilov/hmgu-hpc-skill.git",
+      "install": "DISABLE_TELEMETRY=1 npx skills add https://ascgitlab.helmholtz-munich.de/vladislav.samoilov/hmgu-hpc-skill.git",
       "about": "The HMGU SLURM cluster: access, storage, partitions, GPU etiquette, job debugging.",
       "skills": [
         "hmgu-hpc"
