@@ -78,8 +78,8 @@
       "name": "repoready",
       "version": "1.0.0",
       "source": {
-        "source": "github",
-        "repo": "repoready-ai/mcp-plugin"
+        "source": "url",
+        "url": "https://github.com/repoready-ai/mcp-plugin.git"
       },
       "skills": [
         "./skills/repoready"
