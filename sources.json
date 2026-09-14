@@ -88,6 +88,12 @@
       "source": "https://github.com/jaechang-hits/SciAgent-Skills",
       "path": "skills/scientific-computing",
       "about": "Scalable bioinformatics workflows with Nextflow and nf-core."
+    },
+    {
+      "name": "repoready",
+      "source": "https://github.com/repoready-ai/mcp-plugin",
+      "path": "skills/repoready",
+      "about": "Analyze research code for reproducibility via the RepoReady MCP server."
     }
   ]
 }
