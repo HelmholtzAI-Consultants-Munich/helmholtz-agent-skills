@@ -12,7 +12,10 @@ submitting or publishing, or when you want a cited list of what to fix.
 
 This is a third-party plugin from RepoReady. Analysis runs on their servers and needs an
 account at [repoready.ai](https://repoready.ai) (institutional email joins an org plan;
-otherwise a free trial).
+otherwise a free trial). For a local project the workflow zips the code (excluding `.git`,
+dependency dirs, and `.env` files) and uploads it for analysis — don't use it on code that
+must not leave your machine. Runs are metered: trial runs or your organization's plan,
+which may enforce a daily cap.
 
 ## Install
 
@@ -37,6 +40,7 @@ RepoReady is a remote MCP server. **Connectors → Add connector → Remote**, t
 
 - name: `repoready`
 - URL: `https://api.repoready.ai/api/mcp`
+- if Advanced settings ask for a transport, pick **Streamable HTTP** (not SSE)
 
 Sign in when prompted (account at [repoready.ai](https://repoready.ai)).
 

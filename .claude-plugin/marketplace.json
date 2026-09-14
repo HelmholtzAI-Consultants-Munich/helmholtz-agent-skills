@@ -85,7 +85,8 @@
         "./skills/repoready"
       ],
       "description": "Research-code reproducibility analysis via RepoReady MCP",
-      "repository": "https://github.com/repoready-ai/mcp-plugin"
+      "repository": "https://github.com/repoready-ai/mcp-plugin",
+      "license": "MIT"
     }
   ]
 }

@@ -41,6 +41,20 @@
       ]
     },
     {
+      "name": "repoready",
+      "tier": "public",
+      "type": "git",
+      "url": "https://github.com/repoready-ai/mcp-plugin.git",
+      "ref": "v1.0.0",
+      "path": "skills",
+      "homepage": "https://github.com/repoready-ai/mcp-plugin",
+      "install": "npx skills add repoready-ai/mcp-plugin",
+      "about": "Analyze research code for reproducibility via the RepoReady MCP server.",
+      "skills": [
+        "repoready"
+      ]
+    },
+    {
       "name": "virtual-human-chc",
       "tier": "embargoed",
       "type": "git",
@@ -88,12 +102,6 @@
       "source": "https://github.com/jaechang-hits/SciAgent-Skills",
       "path": "skills/scientific-computing",
       "about": "Scalable bioinformatics workflows with Nextflow and nf-core."
-    },
-    {
-      "name": "repoready",
-      "source": "https://github.com/repoready-ai/mcp-plugin",
-      "path": "skills/repoready",
-      "about": "Analyze research code for reproducibility via the RepoReady MCP server."
     }
   ]
 }
