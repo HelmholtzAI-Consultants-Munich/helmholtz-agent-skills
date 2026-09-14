@@ -73,6 +73,19 @@
       "strict": false,
       "description": "Relentless interview of a plan until every design branch is resolved",
       "repository": "https://github.com/mattpocock/skills"
+    },
+    {
+      "name": "repoready",
+      "version": "1.0.0",
+      "source": {
+        "source": "github",
+        "repo": "repoready-ai/mcp-plugin"
+      },
+      "skills": [
+        "./skills/repoready"
+      ],
+      "description": "Research-code reproducibility analysis via RepoReady MCP",
+      "repository": "https://github.com/repoready-ai/mcp-plugin"
     }
   ]
 }

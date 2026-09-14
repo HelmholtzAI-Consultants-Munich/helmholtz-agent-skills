@@ -36,6 +36,8 @@ Cursor, Codex, Copilot, Gemini CLI, and anything else that reads `SKILL.md`
 
 **[nextflow-workflow-engine](./docs/third-party/nextflow-workflow-engine.md)** — Scalable bioinformatics workflows with Nextflow and nf-core.
 
+**[repoready](./docs/third-party/repoready.md)** — Score research code for reproducibility and act on cited findings via RepoReady MCP.
+
 ## Install
 
 ### Coding harnesses: Claude Code, Cursor, Codex, etc.
@@ -49,8 +51,8 @@ claude plugin install method-skills@helmholtz-agent-skills
 ```
 
 Adding the marketplace does not install every plugin. Public GitHub plugins such as `biotope`
-are fetched from their upstream repositories; skill-only third-party entries use a subdirectory
-of their source repo.
+and `repoready` are fetched from their upstream repositories; skill-only third-party entries
+use a subdirectory of their source repo.
 
 For Cursor and other `SKILL.md` harnesses, use `npx skills` [(see official docs)](https://github.com/vercel-labs/skills).
 The installer asks which skills to take and which agents to install them into. Add `-g` to
