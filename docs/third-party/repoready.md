@@ -34,6 +34,13 @@ Skill-only (workflow instructions, no MCP):
 npx skills add repoready-ai/mcp-plugin@repoready
 ```
 
+## Install in the Claude web app (claude.ai)
+
+**Customize → Plugins → Add → Add marketplace → Add from a repository**, then paste
+`repoready-ai/mcp-plugin` and add the **Repoready** plugin. The plugin bundles the
+skill, the command, and the RepoReady MCP connector — open the plugin's **Connectors**
+tab and connect it to sign in. No manually added custom connector is needed.
+
 ## Install in Claude Science
 
 RepoReady is a remote MCP server. **Connectors → Add connector → Remote**, then:

@@ -74,16 +74,23 @@ npx skills add biocypher/biotope
 
 Open any skill above for its exact install command.
 
-### Claude Science and Claude Web App
+### Claude web app (claude.ai)
 
-**Skills → Add skill → Import from GitHub**, then paste the repository URL:
+**Customize → Plugins → Add → Add marketplace → Add from a repository**, then paste the
+repository URL:
 
 ```
 https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills
 ```
 
-Preview and install the plugins you want. For a single upstream plugin, paste that repo's URL
-instead (for example `https://github.com/biocypher/biotope`).
+Add the plugins you want; a plugin brings its skills, commands, and any MCP connectors
+it bundles. For a single upstream plugin, paste that repo's URL instead (for example
+`https://github.com/biocypher/biotope`).
+
+### Claude Science
+
+**Skills → Add skill → Import from GitHub** with the same URLs. Skill imports do not
+attach MCP servers there — add those under **Connectors**.
 
 Full walkthrough: [docs/claude-science.md](./docs/claude-science.md).
 

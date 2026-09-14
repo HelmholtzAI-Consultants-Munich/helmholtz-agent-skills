@@ -36,6 +36,10 @@ Science does not attach MCP servers from a skill import. Add a remote server und
 **Connectors → Add connector → Remote**. Example: [repoready](./third-party/repoready.md) is
 `https://api.repoready.ai/api/mcp`.
 
+This is Science-specific. The Claude web app's plugin import (**Customize → Plugins →
+Add marketplace**) does surface a plugin's root MCP servers as connectors; see the
+[repoready](./third-party/repoready.md) page for that flow.
+
 ## Access-controlled skills
 
 `model-search` and `model-embed` ship as the `vhmodels` plugin. With GitHub access, import:
