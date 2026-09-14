@@ -45,7 +45,7 @@
       "tier": "public",
       "type": "git",
       "url": "https://github.com/repoready-ai/mcp-plugin.git",
-      "ref": "v1.0.0",
+      "ref": "main",
       "path": "skills",
       "homepage": "https://github.com/repoready-ai/mcp-plugin",
       "install": "npx skills add repoready-ai/mcp-plugin",
