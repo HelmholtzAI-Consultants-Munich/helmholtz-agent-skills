@@ -15,8 +15,9 @@ https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills
 ```
 
 Preview the catalog, then install the plugins you want. Marketplace entries that point at a
-whole GitHub plugin bring that plugin's skills and any MCP servers defined at the plugin root.
-Skill-only third-party entries are the curated subdirectory, not the entire upstream repo.
+whole GitHub plugin bring that plugin's skills. Skill-only third-party entries are the curated
+subdirectory, not the entire upstream repo. Remote MCP servers are added separately under
+**Connectors**.
 
 ## One upstream plugin
 
@@ -28,6 +29,16 @@ https://github.com/biocypher/biotope
 
 To confirm one landed, look for its directory under
 `~/.claude-science/orgs/<your-org-id>/skills/`.
+
+## Remote MCP connectors
+
+Science does not attach MCP servers from a skill import. Add a remote server under
+**Connectors → Add connector → Remote**. Example: [repoready](./third-party/repoready.md) is
+`https://api.repoready.ai/api/mcp`.
+
+This is Science-specific. The Claude web app's plugin import (**Customize → Plugins →
+Add marketplace**) does surface a plugin's root MCP servers as connectors; see the
+[repoready](./third-party/repoready.md) page for that flow.
 
 ## Access-controlled skills
 
