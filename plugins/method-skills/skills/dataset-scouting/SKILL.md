@@ -54,22 +54,24 @@ Very briefly present what you found: totals, surprises, high-relevance gaps, row
 **Step 5: Double-check pass**
 Independently verify candidate identity, evidence level, and the claims that determine each recommendation. For accepted, unknown, and Tier-1 candidates, also check unresolved must-have fields in plausible skipped sources. Dispatch verification sub-agents when you have them. The goal is to ensure all recorded information is correct, and that missing information was not merely overlooked.
 
+If `scripts/` is not on disk, write it with `host.skills.read("dataset-scouting", path)`: `scripts/datasheet.py`, `scripts/datasheet_lib/__init__.py`, `scripts/datasheet_lib/markdown.py`, `scripts/datasheet_lib/model.py`, `scripts/datasheet_lib/validate.py`, `scripts/datasheet_lib/workbook.py`. Then:
+
 ```bash
-python3 "$SKILL_DIR/scripts/datasheet.py" check datasheet/
+python3 scripts/datasheet.py check datasheet/
 ```
 
 **Step 6: Hand over**
 Generate and verify the output Excel file:
 ```bash
-python3 "$SKILL_DIR/scripts/datasheet.py" build datasheet/
+python3 scripts/datasheet.py build datasheet/
 ```
 
 `datasheet.xlsx` must be a concise, readable review document covering the candidates, declared fields, criteria satisfaction, access routes, and proposed recommendations. Full evidence stays in the candidate Markdown files.
 
 ### References
-Use the following references for the details needed at each step:
-- [interview-guidelines.md](./references/interview-guidelines.md) — step 2 and 4: question examples, tone, points users get wrong on a first pass.
-- [search-channels.md](./references/search-channels.md) — step 1 and 3: which channels to use, in which order, when to stop, how to record the search.
-- [search-guidelines.md](./references/search-guidelines.md) — steps 1, 3 and 5: fetch boundary, three checks, claim rules.
-- [source-verifier.md](./references/source-verifier.md) — step 5: verification guidance and a prompt for a checker sub-agent.
-- [datasheet-format.md](./references/datasheet-format.md) — steps 3–6: candidate record semantics, hard checks, sources, Review ownership, and workbook build.
+Read with `host.skills.read("dataset-scouting", "<path>")`.
+- Read `references/interview-guidelines.md` — step 2 and 4: question examples, tone, points users get wrong on a first pass.
+- Read `references/search-channels.md` — step 1 and 3: which channels to use, in which order, when to stop, how to record the search.
+- Read `references/search-guidelines.md` — steps 1, 3 and 5: fetch boundary, three checks, claim rules.
+- Read `references/source-verifier.md` — step 5: verification guidance and a prompt for a checker sub-agent.
+- Read `references/datasheet-format.md` — steps 3–6: candidate record semantics, hard checks, sources, Review ownership, and workbook build.
