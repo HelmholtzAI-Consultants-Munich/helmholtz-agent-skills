@@ -5,6 +5,10 @@ from __future__ import annotations
 
 import argparse
 import sys
+from pathlib import Path
+
+# PYTHONSAFEPATH=1 omits the script directory, so sibling datasheet_lib would not import.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from datasheet_lib.markdown import DatasheetError, scaffold_candidates
 from datasheet_lib.validate import format_issues, validate_datasheet

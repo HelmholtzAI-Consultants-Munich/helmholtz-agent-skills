@@ -14,9 +14,11 @@ datasheet/
 
 Use one file per candidate. Create it with:
 
-```bash
-python3 "$SKILL_DIR/scripts/datasheet.py" new datasheet/ <candidate-id>
 ```
+scripts/datasheet.py new datasheet/ <candidate-id>
+```
+
+If `scripts/` is not in the working directory, materialize it from the skill registry first (`host.skills.read("dataset-scouting", path)` for each file listed in SKILL.md, repl tool, no `./` prefix). Run with the environment's Python.
 
 The command supplies the supported headings and tables. Fill the scaffold; do not invent parallel fields or reorder its structure.
 
@@ -91,9 +93,9 @@ Every bracketed citation must resolve to a source row. Mark second-hand material
 
 ## Check and build
 
-```bash
-python3 "$SKILL_DIR/scripts/datasheet.py" check datasheet/
-python3 "$SKILL_DIR/scripts/datasheet.py" build datasheet/
+```
+scripts/datasheet.py check datasheet/
+scripts/datasheet.py build datasheet/
 ```
 
 `check` enforces structure, controlled values, source integrity, evidence prerequisites, criteria coverage, acceptance rules, and Review preservation when a baseline is supplied. Research-quality judgement remains part of the verification pass; the script does not pretend to prove that a search was thorough.
@@ -104,6 +106,6 @@ python3 "$SKILL_DIR/scripts/datasheet.py" build datasheet/
 
 To prove a re-run preserved human text:
 
-```bash
-python3 "$SKILL_DIR/scripts/datasheet.py" check datasheet/ --review-baseline <baseline-datasheet>/
+```
+scripts/datasheet.py check datasheet/ --review-baseline <baseline-datasheet>/
 ```
