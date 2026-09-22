@@ -41,6 +41,20 @@
       ]
     },
     {
+      "name": "repoready",
+      "tier": "public",
+      "type": "git",
+      "url": "https://github.com/repoready-ai/mcp-plugin.git",
+      "ref": "main",
+      "path": "skills",
+      "homepage": "https://github.com/repoready-ai/mcp-plugin",
+      "install": "npx skills add repoready-ai/mcp-plugin",
+      "about": "Analyze research code for reproducibility via the RepoReady MCP server.",
+      "skills": [
+        "repoready"
+      ]
+    },
+    {
       "name": "virtual-human-chc",
       "tier": "embargoed",
       "type": "git",
@@ -59,11 +73,11 @@
       "name": "hmgu-hpc",
       "tier": "gated",
       "type": "git",
-      "url": "git@ascgitlab.helmholtz-munich.de:vladislav.samoilov/hmgu-hpc-skill.git",
+      "url": "https://ascgitlab.helmholtz-munich.de/vladislav.samoilov/hmgu-hpc-skill.git",
       "ref": "main",
       "path": ".",
       "homepage": "https://ascgitlab.helmholtz-munich.de/vladislav.samoilov/hmgu-hpc-skill",
-      "install": "DISABLE_TELEMETRY=1 npx skills add git@ascgitlab.helmholtz-munich.de:vladislav.samoilov/hmgu-hpc-skill.git",
+      "install": "DISABLE_TELEMETRY=1 npx skills add https://ascgitlab.helmholtz-munich.de/vladislav.samoilov/hmgu-hpc-skill.git",
       "about": "The HMGU SLURM cluster: access, storage, partitions, GPU etiquette, job debugging.",
       "skills": [
         "hmgu-hpc"

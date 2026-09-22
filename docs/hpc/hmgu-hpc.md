@@ -16,7 +16,7 @@ that are invisible from the outside.
 ## Install
 
 ```bash
-DISABLE_TELEMETRY=1 npx skills add git@ascgitlab.helmholtz-munich.de:vladislav.samoilov/hmgu-hpc-skill.git
+DISABLE_TELEMETRY=1 npx skills add https://ascgitlab.helmholtz-munich.de/vladislav.samoilov/hmgu-hpc-skill.git
 ```
 
 ## Access
