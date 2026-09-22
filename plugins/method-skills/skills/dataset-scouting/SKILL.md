@@ -54,23 +54,22 @@ Very briefly present what you found: totals, surprises, high-relevance gaps, row
 **Step 5: Double-check pass**
 Independently verify candidate identity, evidence level, and the claims that determine each recommendation. For accepted, unknown, and Tier-1 candidates, also check unresolved must-have fields in plausible skipped sources. Dispatch verification sub-agents when you have them. The goal is to ensure all recorded information is correct, and that missing information was not merely overlooked.
 
-If `scripts/` is not already in the working directory, materialize it from the skill registry with the repl tool only — `host.skills.read("dataset-scouting", path)` for each of `scripts/datasheet.py`, `scripts/datasheet_lib/__init__.py`, `scripts/datasheet_lib/markdown.py`, `scripts/datasheet_lib/model.py`, `scripts/datasheet_lib/validate.py`, `scripts/datasheet_lib/workbook.py`. Then run with the environment's Python:
+If `scripts/` is not on disk, write it with `host.skills.read("dataset-scouting", path)`: `scripts/datasheet.py`, `scripts/datasheet_lib/__init__.py`, `scripts/datasheet_lib/markdown.py`, `scripts/datasheet_lib/model.py`, `scripts/datasheet_lib/validate.py`, `scripts/datasheet_lib/workbook.py`. Then:
 
-```
-scripts/datasheet.py check datasheet/
+```bash
+python3 scripts/datasheet.py check datasheet/
 ```
 
 **Step 6: Hand over**
 Generate and verify the output Excel file:
-
-```
-scripts/datasheet.py build datasheet/
+```bash
+python3 scripts/datasheet.py build datasheet/
 ```
 
 `datasheet.xlsx` must be a concise, readable review document covering the candidates, declared fields, criteria satisfaction, access routes, and proposed recommendations. Full evidence stays in the candidate Markdown files.
 
 ### References
-Read these with `host.skills.read("dataset-scouting", "<path>")` (repl tool) when that channel exists; otherwise Read them from the skill directory. Paths are skill-relative with no `./` prefix.
+Read with `host.skills.read("dataset-scouting", "<path>")`.
 - Read `references/interview-guidelines.md` — step 2 and 4: question examples, tone, points users get wrong on a first pass.
 - Read `references/search-channels.md` — step 1 and 3: which channels to use, in which order, when to stop, how to record the search.
 - Read `references/search-guidelines.md` — steps 1, 3 and 5: fetch boundary, three checks, claim rules.
