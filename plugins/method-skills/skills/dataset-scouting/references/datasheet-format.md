@@ -1,6 +1,6 @@
 # Datasheet format
 
-Read this when creating, updating, checking, or building the datasheet. Candidate files are the sourced working record; `datasheet.xlsx` is the concise human review view.
+Read this when creating, updating, checking, or building a detailed datasheet. Candidate files are the sourced working record; `datasheet.xlsx` is the concise human review view. A broad discovery table uses only its agreed fields and does not need this full schema.
 
 ## Layout and ownership
 
@@ -29,6 +29,9 @@ The agent owns findings, sources, gaps, and its recommendation. The user owns ev
 Keep summary values comparable enough to scan in Excel. Put long reasoning in the relevant table, `Gaps`, or `Research notes`.
 
 - `Download size`: total download volume of the acquisition set behind `Raw-data route`. Start with the total and its unit, then give the size basis or optional breakdown: `412 GB total compressed download [S2]`. If the listing exposes no usable byte sizes, write `unknown — <reason>`.
+- `Data source`: repository/portal and backing store, when different, such as `GEO / SRA`, `HTAN / Synapse`, or `S3`.
+- `Download method`: the retrieval tool/protocol and needed identifiers or prerequisites. For example, `SRA Toolkit: prefetch then fasterq-dump for each listed run`. For mixed routes, name which method applies to each target or group. Do not execute download commands during scouting.
+- `Metadata route` and `Raw-data route`: exact acquisition targets, one per line, with optional trailing source IDs. Use file or machine-readable manifest URLs/URIs (`https://`, `ftp://`, `s3://`, `gs://`, `drs://`), SRA run IDs (`SRR`, `ERR`, `DRR`), Synapse file IDs, Gen3 file GUIDs, or existing local files (absolute paths or `./` paths relative to the datasheet directory). Include all required companion files. Keep reference pages and explanations in `Sources`/notes; a directory or study accession alone is not an acquisition target. Unresolved routes may be `unknown — <reason>`; application links belong with their `on request` access state.
 - `Metadata access` and `Raw-data access`: `direct`, `on request`, `off-repository`, `unavailable`, or `unknown`.
 - `Metadata evidence` and `Raw-data evidence`: `claimed`, `route verified YYYY-MM-DD`, `contents inspected YYYY-MM-DD`, or `unknown`.
 - `Tier`: relevance according to `criteria.md`; it is independent of the recommendation.
@@ -37,7 +40,7 @@ Keep summary values comparable enough to scan in Excel. Put long reasoning in th
 Evidence levels are deliberately different:
 
 - `claimed` means a record or document says a route or object exists.
-- `route verified` means the exact route was opened and matched the candidate.
+- `route verified` means the exact target was matched to the candidate through its API/listing or response headers; it does not require downloading a dataset payload.
 - `contents inspected` means a listing, manifest, export, or metadata object was examined closely enough to identify its contents.
 
 Reachability is not content verification. A route may resolve while carrying only processed outputs.
@@ -48,7 +51,7 @@ Record `pass`, `fail`, or `unknown`, a concise reason, and source IDs for each c
 
 1. `Metadata`: does relevant metadata exist, and can the user reach it? A pass needs a populated metadata route and evidence that the route was opened.
 2. `Required fields`: are every must-have field present at the coverage threshold in `criteria.md`? A pass needs `contents inspected` metadata evidence and countable coverage.
-3. `Raw data`: do the available files meet the user's definition of raw enough? A pass needs `contents inspected` raw-data evidence.
+3. `Raw data`: do the available files meet the user's definition of raw enough? A pass needs `contents inspected` raw-data evidence, exact acquisition targets, a known source/method, and accessible data.
 
 Do not recommend `accept` while any required check is `fail` or `unknown`. Access-restricted data is normally `unknown`, not `fail`: record the application route and contact.
 
@@ -65,14 +68,14 @@ Use one row per field. This single table replaces separate present, absent, and 
 | `Storage` | Where values live: structured field, record title, free text, supplement, code repository, data object, or another accurate source term. |
 | `Level` | What entity the value describes: sample, participant, cell, study, or another accurate level. |
 | `Sources` | Bracketed source IDs such as `[S2] [S4]`. |
-| `Note` | Values observed, where absence was checked, contradictions, or other evidence needed to interpret the row. |
+| `Note` | Start with the concise value or finding in the agreed report terminology; include relevant counts, groups and denominators. Then retain source wording/qualifiers or explain absence and contradictions. |
 
-`present` requires storage and level. A field mentioned once at study level is not present per sample. Record source values when they establish usability, but do not normalize or map them into the user's target vocabulary.
+`present` requires storage and level. A field mentioned once at study level is not present per sample. Use the terminology agreed in `criteria.md` for report values, preserving original terms and meaningful distinctions in the evidence. Do not harmonize the underlying data. Keep longer explanations in `Research notes` so the value in `Note` remains readable in Excel.
 
 Example:
 
 ```markdown
-| sex | nice-to-have | present | 6/6 | supplement | participant | [S4] | values `F` and `M` |
+| cell population | must-have | present | 6/6 | supplement | sample | [S4] | CD4 T cells; source: "CD4 memory T cells", memory-selected |
 ```
 
 ## Technical details and research
@@ -98,9 +101,9 @@ python3 scripts/datasheet.py check datasheet/
 python3 scripts/datasheet.py build datasheet/
 ```
 
-`check` enforces structure, controlled values, source integrity, evidence prerequisites, criteria coverage, acceptance rules, and Review preservation when a baseline is supplied. Research-quality judgement remains part of the verification pass; the script does not pretend to prove that a search was thorough.
+`check` enforces structure, locator syntax for passing checks, controlled values, source integrity, evidence prerequisites, criteria coverage, acceptance rules, and Review preservation when a baseline is supplied. It does not contact remote targets or prove that a URL serves the required data; that remains part of source verification. Older records still parse, but missing `Data source`/`Download method` fields must be filled before they pass validation; the helper never guesses or migrates them.
 
-`build` runs the same hard validation, creates `datasheet.xlsx`, reopens it, and verifies the review sheets and rows. It generates `Datasheet`, `Fields`, `Technical`, and `Totals`; rejected candidates remain visible. The workbook keeps concise decision values and declared criteria fields. Its `Download size` column shows only the total, while route cells contain every recorded URL separated by line breaks. Full evidence and additional observed fields remain in the candidate files.
+`build` runs the same hard validation, creates `datasheet.xlsx`, reopens it, and verifies the review sheets and rows. It generates `Datasheet`, `Fields`, `Technical`, and `Totals`; rejected candidates remain visible. The workbook includes the recommendation reason, source/method and concise field notes alongside coverage, storage and level. Its `Download size` column shows only the total, while route cells preserve acquisition targets separated by line breaks. Full evidence and additional observed fields remain in the candidate files.
 
 `build` requires `openpyxl`. If it is unavailable in the skill runtime, report the dependency rather than installing packages globally.
 

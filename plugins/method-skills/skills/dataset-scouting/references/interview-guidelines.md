@@ -41,7 +41,11 @@ Check against the list below then **rewrite every round before you send it.** Cu
 
 ## What the interview must settle
 
-The screening cannot run without these. Everything else is a bonus.
+For detailed scouting, settle the following. A broad discovery pass needs only the agreed scope and a small set of discovery fields; defer detailed thresholds and methods until candidates are selected.
+
+**Breadth and depth.** Recommend a focused set that can be checked thoroughly. Let the user choose its size and essential fields. An explicitly chosen broad sweep is a discovery list, not the full schema filled with unknowns. Do not carry a previous run's entire schema forward without checking which fields matter now.
+
+**Shared terminology.** When source labels differ and terminology is not yet agreed, show the proposed mappings in the conversation and ask the user to confirm or adjust them before collection. Do not leave that decision only in `criteria.md`. For example, the user may choose `CD4 T cells` for labels including `CD4 cells` and `CD4 memory T cells`; retain memory selection in the evidence rather than treating every subtype as an interchangeable synonym. Record the agreed mappings in `criteria.md` and use them in all report prose and values.
 
 **The candidate unit.** What one entry represents. Test the proposed unit against the messiest candidate in their list before writing it down.
 
@@ -59,7 +63,9 @@ The screening cannot run without these. Everything else is a bonus.
 
 **Tiers.** How many, and what puts a candidate in each.
 
-If they already have a target schema, however messy, derive the field checklist from it and bring it to them marked provisional rather than eliciting fields one at a time.
+If they already have a target schema or curated example, derive a provisional field checklist from it. Capture the information they use to decide, not just field availability: for example, populations and groups, counts with denominators, identification rules, reference genomes, and differences between the published cohort and the deposit. These are domain-dependent examples, not universal requirements.
+
+Close the interview by linking `criteria.md` and explaining the scope, selected fields, terminology and decision rules in a short conversational summary. Ask for confirmation of unresolved proposals, not for a second approval of decisions already agreed. Make later changes to those decisions visible to the user.
 
 ## Example questions
 A few sensible examples. Not a script, and nowhere near exhaustive. Deside and adapt question using your judgment based on the analysis.

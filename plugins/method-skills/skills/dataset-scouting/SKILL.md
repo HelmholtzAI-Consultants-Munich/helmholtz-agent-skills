@@ -5,7 +5,7 @@ description: use this whenever the user is examining public data, asking whether
 
 # Dataset Scouting
 
-Help the user curate and decide which public datasets they can actually use. The final output is a **datasheet** — an Excel workbook plus its Markdown working files, one sourced entry per candidate, overview of available and missing data or metadata, verified URLs, technical details about the data (e.g. processing techniques), and a proposed suggestion with its reason. A **candidate** is one dataset the user might acquire (typically, a dataset coming from the same study sharing metadata schema, preprocessing pipeline, technology, etc.).
+Help the user curate and decide which public datasets they can actually use. Detailed scouting produces a **datasheet** — an Excel workbook plus its Markdown working files, one sourced entry per candidate, available and missing data or metadata, actionable download routes, selected technical details, and a recommendation with its reason. A **candidate** is one dataset the user might acquire (typically, a dataset coming from the same study sharing metadata schema, preprocessing pipeline, technology, etc.).
 
 **The human decides.** You screen, propose and record. Accepting, rejecting, prioritising and emailing authors are the user's calls, and their words in the datasheet are theirs to edit, never yours. Acquiring, loading, harmonizing or mapping a dataset is not this skill. 
 
@@ -35,15 +35,17 @@ Then, list what you can actually reach this session: connectors, databases, and 
 
 **Step 2: Settle criteria together with the user**
 
-Interview the user thoroughly until fully aligned on the decision rules and collect all relevant non-trivial insights. Write a concise `criteria.md` containing the candidate unit, checks, fields of interest and thresholds, technical details, tiers, scope, and open questions. Get explicit confirmation before collecting.
+Agree on scope and depth before collecting. Recommend a focused set of candidates and the fields needed for the user's decision; agree its size rather than imposing a fixed cap. If the user chooses a broad sweep, return a compact, cited discovery table in their requested format: candidate, relevance, tissue/cells, assay, source/access lead, and next check. Do not populate the detailed datasheet with unresearched fields. Move to detailed scouting only for the selected candidates.
+
+For detailed scouting, write a concise `criteria.md` containing the candidate unit, checks, selected fields and thresholds, technical details, tiers, scope, shared terminology, and open questions. Explain that this file controls what you search for and how you judge candidates. Link it and summarize the proposed decisions in the conversation before asking for confirmation. Distinguish agreed decisions from proposals; writing the file is not confirmation. Reuse decisions already confirmed by the user.
 
 Here are typical topics requiring alignment, but use your best judgment based on the responses: which fields are must-have and at what coverage, what "raw enough" means, what counts as reachable metadata, how they want `on request` rows triaged, which author-reported technical details they need, and how tiers are defined.
 
-It's important that the interview questions are understandable to the user, load-bearing, and have best potential pre-defined options (suggestions) based on your research. Use plain words for plain things: "no download link found", not "acquisition route unresolvable at this time". Use their vocabulary rather than yours. One idea per sentence.
+It's important that the interview questions are understandable to the user, load-bearing, and have best potential pre-defined options (suggestions) based on your research. Use plain words for plain things: "no download link found", not "acquisition route unresolvable at this time". Agree report terminology using real source labels, then use it throughout the report while retaining original terms and meaningful qualifiers in the evidence. This harmonizes report wording, not the underlying datasets.
 
 **Step 3: Collect**
 
-Build the datasheet by researching each remaining candidate. Research each candidate until its identity, sample count, total download size, must-have fields, and recommendation are supported by authoritative evidence. For viable/tier 1 candidates, don't give up finding missing info until all the channels are exhausted.
+For detailed scouting, research each selected candidate until its identity, sample count, total download size, agreed fields, and recommendation are supported by authoritative evidence or an explicit searched gap. Resolve download targets and record their source and retrieval method. For viable/tier 1 candidates, pursue unresolved decision-critical fields through the applicable channels. Keep discovery/search logs outside `candidates/`; they are not datasets.
 
 Adaptive: if the criteria don't fit what you are seeing, pause and ask. Don't finish the pool against a rule you no longer believe.
 
@@ -52,7 +54,7 @@ Adaptive: if the criteria don't fit what you are seeing, pause and ask. Don't fi
 Very briefly present what you found: totals, surprises, high-relevance gaps, rows that need a decision, criteria that cracked. Do another round of interviews to align if criteria still hold, if something needs loosening/hardening, if priorities changed based on findings. Refine the criteria if they change their mind.
 
 **Step 5: Double-check pass**
-Independently verify candidate identity, evidence level, and the claims that determine each recommendation. For accepted, unknown, and Tier-1 candidates, also check unresolved must-have fields in plausible skipped sources. Dispatch verification sub-agents when you have them. The goal is to ensure all recorded information is correct, and that missing information was not merely overlooked.
+Independently verify candidate identity, evidence level, download targets and methods, agreed terminology, and the claims that determine each recommendation. For accepted, unknown, and Tier-1 candidates, also check unresolved must-have fields in plausible skipped sources. Dispatch verification sub-agents when you have them. For a broad sweep, verify the discovery claims without expanding into a detailed audit. The checks and workbook build below apply to detailed scouting.
 
 If `scripts/` is not on disk, write it with `host.skills.read("dataset-scouting", path)`: `scripts/datasheet.py`, `scripts/datasheet_lib/__init__.py`, `scripts/datasheet_lib/markdown.py`, `scripts/datasheet_lib/model.py`, `scripts/datasheet_lib/validate.py`, `scripts/datasheet_lib/workbook.py`. Then:
 
@@ -61,7 +63,7 @@ python3 scripts/datasheet.py check datasheet/
 ```
 
 **Step 6: Hand over**
-Generate and verify the output Excel file:
+For detailed scouting, generate and verify the output Excel file:
 ```bash
 python3 scripts/datasheet.py build datasheet/
 ```

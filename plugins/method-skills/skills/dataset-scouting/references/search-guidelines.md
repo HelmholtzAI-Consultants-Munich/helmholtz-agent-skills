@@ -8,6 +8,8 @@ An `unknown` on a field is only honest after a real search. Record rungs and out
 
 On a field, `unknown` means you cannot source it, or you searched and could not find it — always name channels tried: `unknown — tried: record, full text, supplements 1-4, code-repository search`. On a check, `unknown` means the check could not be run (access, no listing, no permission). Do not write `unknown` for "I did not look".
 
+Use `not checked` for work not performed. Limit discovery output to the agreed discovery fields instead of adding detailed fields with placeholders. In detailed scouting, research the selected fields; if that scope is no longer feasible, realign with the user rather than silently delivering an unresearched schema.
+
 ## Fetch boundary
 You do not acquire data for the user's pipeline. The line is what the object *is*, not only how big it is.
 
@@ -32,7 +34,7 @@ The user's scientific criteria layer on top of these; they never replace them.
 
 1. **Metadata check.** Does relevant metadata exist, and can the user reach it? Passing needs a route to the metadata itself rather than a landing page, plus evidence that you opened it.
 2. **Required-fields check.** Are the must-have fields present, at the coverage `criteria.md` declares? Passing needs a count, which means having opened the metadata.
-3. **Raw-data check.** Do the available files meet the user's definition of raw enough? Passing needs a listing or manifest identifying the file types, not just a route that resolves.
+3. **Raw-data check.** Do the available files meet the user's definition of raw enough? Passing needs a listing or manifest identifying the file types, plus exact acquisition targets and a known retrieval method. A landing page, directory, or study accession alone is not a download handoff. A syntactically valid URL is not evidence that it returns the required files.
 
 Keep checks 1 and 2 apart. A deposit can carry four populated metadata fields and still omit the one variable the study is named after — that is a different conversation with the authors than "there is no metadata".
 

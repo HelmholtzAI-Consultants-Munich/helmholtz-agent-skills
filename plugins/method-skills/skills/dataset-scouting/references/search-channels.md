@@ -1,6 +1,6 @@
 # Search channels
 
-Work the ladder. Record each rung and its outcome in the candidate's `Research` table, so the next run starts where this one stopped and a gap names a real search.
+For detailed scouting, work the ladder for the agreed fields. Record each rung and its outcome in the candidate's `Research` table, so the next run starts where this one stopped and a gap names a real search. For a broad sweep, check only the agreed discovery claims and cite their sources; do not launch this full audit for every hit.
 
 ## Inventory first
 Before the first candidate, find out what you can actually reach in this session rather than assuming. Sessions differ enormously: one has a browser tool and three connected databases, the next has web search only.
@@ -38,6 +38,15 @@ Where sub-agents are available, run independent candidates in parallel; the ladd
 ## Chasing specific things
 
 **An exact raw-data route.** Prefer the repository's own file-level listing or API over any link in the paper: paper links rot, repository routes usually don't. Where the route is an archive, the listing of what's inside is often available without downloading it. Watch for a working link at the wrong granularity: a processed atlas download is not a raw-data route, and recording it as one is worse than recording nothing. Check the directory as well as the manifest; large objects sitting beside a bundle frequently appear in neither the manifest nor the summary.
+
+Record the repository/portal in `Data source` and the actual retrieval mechanism in `Download method`. Resolve to exact file URLs/URIs, a machine-readable acquisition manifest, or identifiers the named client can download. Include all files required for the agreed input, such as matrix, features and barcodes. Keep reference pages in `Sources`; a portal, directory or prose such as "GEO FTP; SRA per sample" is only a lead.
+
+Use the source's current download documentation when selecting a method. Common distinctions:
+- **GEO / SRA:** GEO supplementary file URLs can use HTTPS/FTP; raw sequencing may require SRA run accessions and `prefetch` / `fasterq-dump`, not a GEO series or BioProject ID. See [GEO downloads](https://www.ncbi.nlm.nih.gov/geo/info/download.html) and [SRA downloads](https://www.ncbi.nlm.nih.gov/sra/docs/sradownload/).
+- **S3:** preserve the exact object URI or a manifest of object keys; record AWS CLI/SDK retrieval and any access prerequisites.
+- **HTAN:** identify the backend for the selected files (for example Synapse or Gen3) and record its file IDs/manifest and client. HTAN is a portal, not one download protocol. See [HTAN access](https://docs.humantumoratlas.org/data_access/portal/).
+
+For mixed routes, associate each target or group with its retrieval method. Record commands as handoff guidance, not commands to execute during scouting. Verify identity, file types and target scope through listings/APIs/manifests and headers without fetching payload bodies. If unresolved, state the gap rather than presenting a reference page as a download.
 
 **A route to the metadata itself.** The repository's machine-readable export for the accession, the supplementary file's own URL or DOI, the file in the code repository. The record's landing page is where you found the metadata, not a route to it, and a route that was never recorded cannot be link-checked. Where metadata is only obtainable by application, record the application route.
 
