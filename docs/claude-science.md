@@ -19,6 +19,11 @@ whole GitHub plugin bring that plugin's skills. Skill-only third-party entries a
 subdirectory, not the entire upstream repo. Remote MCP servers are added separately under
 **Connectors**.
 
+Select `method-skills` for this repository's `dataset-scouting`, `grilling`, and
+`pureclip-optimization` skills. Grilling is maintained here; it is no longer a separate
+external catalog entry. If you installed the former plugin, follow the
+[grilling migration instructions](./planning/grilling.md#replacing-an-earlier-installation).
+
 ## One upstream plugin
 
 Import that repository's URL instead. Example:

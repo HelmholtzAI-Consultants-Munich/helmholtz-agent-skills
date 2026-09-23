@@ -28,9 +28,11 @@ Cursor, Codex, Copilot, Gemini CLI, and anything else that reads `SKILL.md`
 
 **[hmgu-hpc](./docs/hpc/hmgu-hpc.md)** — Have agent reliably use the HMGU HPC cluster: access, storage, partitions, GPU etiquette, job dispatch and debugging. (🔒 Restricted Access: Helmholtz Munich SSO)
 
-#### Recommended third-party skills
+#### Planning and collaboration
 
-**[grilling](./docs/third-party/grilling.md)** — Interview the user relentlessly about a plan until every branch of the design tree is resolved.
+**[grilling](./docs/planning/grilling.md)** — Stress-test designs and develop ideas with human expertise before handing off implementation.
+
+#### Recommended third-party skills
 
 **[scanpy-scrna-seq](./docs/third-party/scanpy-scrna-seq.md)** — Single-cell RNA-seq analysis with Scanpy.
 
@@ -49,6 +51,10 @@ Claude Code and Codex can add it and install plugins separately:
 claude plugin marketplace add https://github.com/HelmholtzAI-Consultants-Munich/helmholtz-agent-skills
 claude plugin install method-skills@helmholtz-agent-skills
 ```
+
+`method-skills` contains `dataset-scouting`, `grilling`, and `pureclip-optimization`.
+The local grilling skill replaces the former external plugin; existing users can follow
+the [grilling migration instructions](./docs/planning/grilling.md#replacing-an-earlier-installation).
 
 Adding the marketplace does not install every plugin. Public GitHub plugins such as `biotope`
 and `repoready` are fetched from their upstream repositories; skill-only third-party entries
