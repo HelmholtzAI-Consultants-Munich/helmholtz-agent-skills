@@ -25,6 +25,7 @@ Candidate file: <path to candidate file>
 criteria.md: <path>
 Sources to check: <source IDs, or all sources added or changed in this run>
 Must-have fields: <list from criteria.md, with coverage thresholds>
+Agreed report terminology: <mappings from criteria.md, if any>
 
 PART A — cited sources
 
@@ -50,6 +51,11 @@ For each source, check four things:
    archive contents or raw-data suitability. An absence claim needs a
    complete listing of the place the thing would be, and a structural
    absence read only from an API payload is not an absence from the record.
+
+Also check that acquisition targets identify the required files or a usable
+manifest/run list, that Data source and Download method match them, and that
+report values use the agreed terminology without losing source qualifiers.
+Do not treat a landing page, directory, or descriptive route as a download.
 
 Report one block per source:
 

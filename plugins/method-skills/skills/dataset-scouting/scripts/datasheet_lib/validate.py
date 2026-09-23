@@ -20,6 +20,7 @@ from .model import (
     Candidate,
     Criteria,
     first_token,
+    route_targets,
 )
 
 
@@ -218,12 +219,22 @@ def validate_candidate(candidate: Candidate, criteria: Criteria) -> list[Issue]:
     raw_result = candidate.check_result("Raw data")
     metadata_evidence = _evidence_level(candidate.summary.get("Metadata evidence", ""))
     raw_evidence = _evidence_level(candidate.summary.get("Raw-data evidence", ""))
-    metadata_route = first_token(candidate.summary.get("Metadata route", ""))
-    raw_route = first_token(candidate.summary.get("Raw-data route", ""))
+
+    def check_route(key: str) -> None:
+        targets = route_targets(candidate.summary.get(key, ""))
+        if not targets:
+            error(
+                f"{key} needs exact file/manifest locations or download identifiers, "
+                "one per line; put descriptions in notes"
+            )
+        for target in targets:
+            if target.startswith(("/", "./", "../")):
+                path = candidate.path.parent.parent / target
+                if not path.is_file():
+                    error(f"{key} local file does not exist: {target}")
 
     if metadata_result == "pass":
-        if metadata_route in {"", "unknown"}:
-            error("Metadata pass requires a populated Metadata route")
+        check_route("Metadata route")
         if metadata_evidence not in {"route verified", "contents inspected"}:
             error("Metadata pass requires route-verified or contents-inspected evidence")
     if required_result == "pass":
@@ -245,8 +256,12 @@ def validate_candidate(candidate: Candidate, criteria: Criteria) -> list[Issue]:
                     f"is below {declared.threshold}"
                 )
     if raw_result == "pass":
-        if raw_route in {"", "unknown"}:
-            error("Raw data pass requires a populated Raw-data route")
+        check_route("Raw-data route")
+        for key in ("Data source", "Download method"):
+            if first_token(candidate.summary.get(key, "")) in {"", "unknown", "not checked", "unavailable"}:
+                error(f"Raw data pass requires a known {key}")
+        if first_token(candidate.summary.get("Raw-data access", "")) in {"on request", "unavailable", "unknown"}:
+            error("Raw data pass requires an accessible acquisition route")
         if raw_evidence != "contents inspected":
             error("Raw data pass requires contents-inspected evidence")
     if recommendation == "accept":

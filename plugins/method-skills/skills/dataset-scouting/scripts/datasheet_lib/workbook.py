@@ -7,7 +7,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from .markdown import DatasheetError
-from .model import DOWNLOAD_SIZE_RE, Candidate, Criteria, first_token
+from .model import DOWNLOAD_SIZE_RE, Candidate, Criteria, first_token, route_targets
 
 
 WORKBOOK_SHEETS = ["Datasheet", "Fields", "Technical", "Totals"]
@@ -29,6 +29,8 @@ DATASHEET_COLUMNS = [
     "Human decision",
     "Access and contacts",
     "Metadata route",
+    "Data source",
+    "Download method",
     "Raw-data route",
 ]
 STATUS_COLUMNS = [
@@ -42,7 +44,6 @@ STATUS_COLUMNS = [
     "Recommendation",
     "Human decision",
 ]
-URL_RE = re.compile(r"https?://[^\s<>()\[\]\"'`]+")
 CITATION_RE = re.compile(r"\s*\[S\d+\]")
 CELL_LIMIT = 32_000
 BRIEF_SUFFIX = " … see candidate file"
@@ -93,12 +94,14 @@ def _evidence(value: str) -> str:
 
 
 def _route(value: str) -> tuple[str, str | None]:
-    urls = list(dict.fromkeys(url.rstrip(".,);") for url in URL_RE.findall(value)))
-    if len(urls) == 1:
-        return urls[0], urls[0]
-    if len(urls) > 1:
-        return "\n".join(urls), None
-    return _clean(value), None
+    targets = route_targets(value)
+    if targets:
+        link = None
+        if len(targets) == 1 and targets[0].startswith(("https://", "http://", "ftp://")):
+            link = targets[0]
+        return "\n".join(targets), link
+    # Preserve unresolved/legacy text instead of silently selecting a reference URL.
+    return "\n".join(_clean(line) for line in value.splitlines()), None
 
 
 def _sample_count(candidate: Candidate) -> int:
@@ -177,17 +180,21 @@ def build_workbook(datasheet_dir: str, candidates: list[Candidate], criteria: Cr
             first_token(candidate.summary["Raw-data access"]),
             _evidence(candidate.summary["Metadata evidence"]),
             _evidence(candidate.summary["Raw-data evidence"]),
-            first_token(candidate.summary["Recommendation"]),
+            _brief(candidate.summary["Recommendation"], 240),
             first_token(candidate.human_decision),
             _brief(candidate.summary["Access and contacts"], 200),
             metadata_route,
+            _brief(candidate.summary["Data source"], 120),
+            _brief(candidate.summary["Download method"], 360),
             raw_route,
         ]
         sheet.append(row)
         row_index = sheet.max_row
         for name in STATUS_COLUMNS:
             column = DATASHEET_COLUMNS.index(name) + 1
-            _paint(sheet.cell(row_index, column), str(sheet.cell(row_index, column).value or ""), Font, PatternFill)
+            value = str(sheet.cell(row_index, column).value or "")
+            token = first_token(value) if name == "Recommendation" else value
+            _paint(sheet.cell(row_index, column), token, Font, PatternFill)
         for name, link in (("Metadata route", metadata_link), ("Raw-data route", raw_link)):
             if link:
                 cell = sheet.cell(row_index, DATASHEET_COLUMNS.index(name) + 1)
@@ -196,7 +203,7 @@ def build_workbook(datasheet_dir: str, candidates: list[Candidate], criteria: Cr
 
     _style_sheet(
         sheet,
-        [22, 16, 30, 24, 20, 38, 18, 20, 18, 18, 18, 20, 20, 18, 18, 42, 38, 38],
+        [22, 16, 30, 24, 20, 38, 18, 20, 18, 18, 18, 20, 20, 42, 18, 42, 38, 24, 42, 38],
         Font,
         PatternFill,
         Alignment,
@@ -221,7 +228,9 @@ def build_workbook(datasheet_dir: str, candidates: list[Candidate], criteria: Cr
                 statuses.append("not checked")
             else:
                 detail = ", ".join(part for part in (row.coverage, row.storage, row.level) if part)
-                values.append(("absent — " if row.status.casefold() == "absent" else "") + detail)
+                summary = "\n".join(part for part in (_brief(row.note, 360), detail) if part)
+                prefix = f"{row.status} — " if row.status.casefold() != "present" else ""
+                values.append(prefix + summary)
                 statuses.append(row.status.casefold())
         fields_sheet.append(values)
         for offset, status in enumerate(statuses, start=3):

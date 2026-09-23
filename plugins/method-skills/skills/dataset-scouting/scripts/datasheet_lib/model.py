@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
+from urllib.parse import urlsplit
 
 
 REVIEW_MARKER = "<!-- Human-owned. The agent never edits below this line. -->"
@@ -18,6 +19,8 @@ SUMMARY_KEYS = [
     "Metadata route",
     "Metadata access",
     "Metadata evidence",
+    "Data source",
+    "Download method",
     "Raw-data route",
     "Raw-data access",
     "Raw-data evidence",
@@ -49,6 +52,49 @@ CHANNELS = {
     "web",
     "user",
 }
+FILE_ID_RE = re.compile(
+    r"(?:[SED]RR\d+|syn\d+|(?:dg\.[A-Za-z0-9]+/)?"
+    r"[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12})"
+)
+
+
+def route_targets(value: str) -> list[str]:
+    """Parse locator-only lines, without treating prose as a download target.
+
+    This checks syntax, not whether a remote target serves the right content.
+    Local file paths must be absolute or explicitly relative to the datasheet.
+    """
+    targets = []
+    for line in value.splitlines():
+        target = re.sub(r"(?:\s+\[S\d+\])+\s*$", "", line).strip()
+        if not target:
+            continue
+        link = re.fullmatch(r"\[[^\]]+\]\((\S+)\)", target)
+        if link:
+            target = link.group(1)
+        if target.startswith("`") and target.endswith("`"):
+            target = target[1:-1]
+        elif target.startswith("<") and target.endswith(">"):
+            target = target[1:-1]
+        if FILE_ID_RE.fullmatch(target):
+            pass
+        elif target.startswith(("/", "./", "../")):
+            pass
+        else:
+            try:
+                url = urlsplit(target)
+            except ValueError:
+                return []
+            if (
+                url.scheme not in {"http", "https", "ftp", "s3", "gs", "drs"}
+                or not url.netloc
+                or (url.path in {"", "/"} and not url.query)
+                or any(char.isspace() for char in target)
+            ):
+                return []
+        if target not in targets:
+            targets.append(target)
+    return targets
 
 
 @dataclass(frozen=True)
