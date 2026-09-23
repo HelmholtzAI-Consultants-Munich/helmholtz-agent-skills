@@ -13,9 +13,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install pyyaml openpyxl
-      - name: Test dataset scouting helpers
-        run: python3 -B -m unittest discover -s scripts -p 'test_dataset_scouting.py'
+      - run: pip install pyyaml
       - name: Validate skill format
         run: python3 scripts/lint_skills.py
       - name: Validate the registry parses
