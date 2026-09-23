@@ -5,10 +5,11 @@
   "plugins": [
     {
       "name": "method-skills",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "source": "./plugins/method-skills",
       "skills": [
         "./skills/dataset-scouting",
+        "./skills/grilling",
         "./skills/pureclip-optimization"
       ],
       "description": "Method skills that belong to no single tool"
@@ -58,21 +59,6 @@
       "description": "Scalable bioinformatics workflows with Nextflow and nf-core",
       "repository": "https://github.com/jaechang-hits/SciAgent-Skills",
       "license": "Apache-2.0"
-    },
-    {
-      "name": "grilling",
-      "version": "0.1.0",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/mattpocock/skills.git",
-        "path": "skills/productivity"
-      },
-      "skills": [
-        "./grilling"
-      ],
-      "strict": false,
-      "description": "Relentless interview of a plan until every design branch is resolved",
-      "repository": "https://github.com/mattpocock/skills"
     },
     {
       "name": "repoready",

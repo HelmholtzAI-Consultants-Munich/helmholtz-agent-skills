@@ -13,9 +13,13 @@ Answer one question first: what does this skill describe?
   behind that site's access boundary. Add it to `sources.json` with `"tier": "gated"` so people
   can see it exists without being able to read it. Do not list it in the public marketplace.
 
-Never copy another repository's skill into `plugins/`. Add it to `sources.json` and the
-marketplace instead: this repository holds no second copy of a skill that lives elsewhere. A
-skill with no home yet may sit under `plugins/method-skills/skills/` in the meantime, with the
+Do not vendor an unchanged upstream skill into `plugins/`; register its source and marketplace
+entry instead. A substantially adapted method skill maintained here belongs in `method-skills`,
+with its origin credited in the skill's documentation. When it replaces an external listing,
+remove that listing from the registry, marketplace, and third-party docs, and update the README
+and installation guides. [Grilling](./docs/planning/grilling.md) follows this arrangement.
+
+A skill with no home yet may sit under `plugins/method-skills/skills/` in the meantime, with the
 destination recorded in `sources.json`; delete the copy once it lands. If you are unsure where
 something belongs, open an issue rather than guessing.
 
