@@ -13,7 +13,7 @@ Map material decisions as a design tree: decisions branch into the decisions tha
 Ask only when the answer could materially change the goal, scope, workflow, or a significant tradeoff. Bundle routine, reversible details as recommended defaults; do not seek approval for each.
 Work in rounds. The frontier contains questions whose prerequisites are settled. Ask the whole frontier, number each question, and wait for answers before the next round.
 Questions that depend on an unanswered question belong to a later round. Recompute the tree after each reply; never treat silence or your recommendation as agreement.
-Every decision question includes your recommended answer and a short reason, using the ❓/➡️ format. Make questions, assumptions, and alternatives understandable.
+Start each numbered item with a direct question about an unresolved choice or observation, not a proposed design awaiting approval. For decisions, explain the tradeoff, then give your recommended answer and a short reason in the ❓/➡️ format. Include implementation details only when they affect the answer.
 
 Find facts you can look up yourself. Delegate independent investigation when subagents are available; a pending result blocks only its dependent questions.
 Ask the user for undocumented unique experience, judgments, and intentions. Do not ask them to retrieve information you can inspect.
@@ -36,11 +36,11 @@ For work to be delegated, include scope, constraints, testable acceptance criter
 Ask the user to confirm shared understanding before acting on the plan. Honor confirmation already given for that plan; do not reopen settled choices without new information.
 
 ## Tone
-It is essential that the user understand the questions. Before asking a round of questions, check their tone and understandability and refine them.
+It is essential that the user understand the questions. Before sending a round, check that each item makes clear what the user is being asked and why their answer matters; refine its tone and understandability.
 - Give the user enough context to answer without reconstructing it themselves. Assess what they may not know or remember; explain the relevant codebase details, features, and unfamiliar terms.
 - Review each question and recommendation for what this reader needs to understand and decide. Keep that information in the main Q&A. Put secondary caveats, examples, alternatives, and observations below the separator; omit details that add nothing. For example:
 ```
-❓ **Q1** - **<question title>**: <question body, might be multiple paragraphs, including multiple choices>
+❓ **Q1** - **<direct question?>** <context needed to answer; alternatives when useful>
 
 ➡️ <your recommended answer>
 ---
