@@ -29,6 +29,8 @@ A working order, to adapt rather than follow exactly:
 
 You have good attention to detail, but tend to pack secondary nuances, caveats, examples, alternatives, and exploratory observations into the main document, which hurts readability and obscures the important parts. So split into two documents: `report_<protein>.md` carries the core information; `side_notes_<protein>.md` carries secondary details.
 
+TODO: add the Methods section where for all reported metrics and values the formulas and approaches are explicitly described and stated.
+
 ## Writing Style
 - Documents also often arise via an iterative process and become a frankenstein monster of patchwork, references to previous version and outdated or wrong assumptions. This can become very distracting and confusing. => Please make sure the document is a standalone, final, coherent text.
 - You tend to make prose heavier than necessary through rhetorical emphasis, repeated conclusions, unnecessary qualification, parenthetical content, dramatic phrasing, cumbersome asides, and overly assertive language. => Keep the writing direct, precise, compact, scientific, and easy to follow. Remove unnecessary verbosity, repetition, rhetorical emphasis, editorializing, redundant explanation, and cumbersome asides. 
