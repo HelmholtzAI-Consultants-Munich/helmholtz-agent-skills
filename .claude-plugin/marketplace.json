@@ -62,7 +62,7 @@
     },
     {
       "name": "repoready",
-      "version": "1.0.1",
+      "version": "2.0.0",
       "source": {
         "source": "url",
         "url": "https://github.com/repoready-ai/mcp-plugin.git"
@@ -70,7 +70,7 @@
       "skills": [
         "./skills/repoready"
       ],
-      "description": "Research-code reproducibility analysis via RepoReady MCP",
+      "description": "Reproducibility checks for research code via RepoReady MCP: one level per check, cited issues to fix",
       "repository": "https://github.com/repoready-ai/mcp-plugin",
       "license": "MIT"
     }

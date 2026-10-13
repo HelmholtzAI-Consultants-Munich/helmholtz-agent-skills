@@ -2,8 +2,11 @@
 
 ## What it does
 
-Score a research codebase for reproducibility (0–100) and act on findings with file:line
-citations via the RepoReady MCP server.
+Check a research codebase, or a paper's code and data, for reproducibility via the
+RepoReady MCP server: one level per check (L0 Incomplete, L1 Available, L2 Rerunnable;
+L3 Re-executed and L4 Reproduced are not offered yet), with the area results beside it and
+issues with file:line citations to fix. Two scopes: Materials (up to L1) and Materials and
+workflow (up to L2); both are static reviews, the code is not run.
 
 ## When to use / when not
 
@@ -11,11 +14,14 @@ Use when checking, improving, or certifying the reproducibility of research code
 submitting or publishing, or when you want a cited list of what to fix.
 
 This is a third-party plugin from RepoReady. Analysis runs on their servers and needs an
-account at [repoready.ai](https://repoready.ai) (institutional email joins an org plan;
-otherwise a free trial). For a local project the workflow zips the code (excluding `.git`,
-dependency dirs, and `.env` files) and uploads it for analysis — don't use it on code that
-must not leave your machine. Runs are metered: trial runs or your organization's plan,
-which may enforce a daily cap.
+account at [repoready.ai](https://repoready.ai) (institutional email joins your organization's
+plan; otherwise add your own OpenRouter API key: there are no free checks). For a local
+project the workflow zips the code (excluding `.git`, dependency dirs, and `.env` files) and
+uploads it for analysis — don't use it on code that must not leave your machine. Every check
+is priced first, shown as its expected cost ("about $X"), and starts only after your yes;
+your organization's plan or your own OpenRouter key pays, and organizations may set a daily
+cap. A check that cannot finish is not charged, unless it stopped because the paying key ran
+out of credit.
 
 ## Install
 
@@ -38,7 +44,7 @@ npx skills add repoready-ai/mcp-plugin@repoready
 
 **Customize → Plugins → Add → Add marketplace → Add from a repository**, then paste
 `repoready-ai/mcp-plugin` and add the **Repoready** plugin. The plugin bundles the
-skill, the command, and the RepoReady MCP connector — open the plugin's **Connectors**
+skill, the `/repoready:analyze` and `/repoready:status` commands, and the RepoReady MCP connector — open the plugin's **Connectors**
 tab and connect it to sign in. No manually added custom connector is needed.
 
 ## Install in Claude Science
