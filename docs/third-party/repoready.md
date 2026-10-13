@@ -5,8 +5,9 @@
 Check a research codebase, or a paper's code and data, for reproducibility via the
 RepoReady MCP server: one level per check (L0 Incomplete, L1 Available, L2 Rerunnable;
 L3 Re-executed and L4 Reproduced are not offered yet), with the area results beside it and
-issues with file:line citations to fix. Two scopes: Materials (up to L1) and Materials and
-workflow (up to L2); both are static reviews, the code is not run.
+issues with file:line citations to fix. Two checks: an L1 check (are the code, data and
+software behind each result shared?) and an L2 check (the full review without running the
+code: workflow, integrity, automation, reuse).
 
 ## When to use / when not
 
