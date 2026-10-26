@@ -69,7 +69,7 @@
       "skills": [
         "./skills/repoready"
       ],
-      "description": "Reproducibility checks for research code via RepoReady MCP: one level per check, cited issues to fix",
+      "description": "Reproducibility checks for research code and papers via RepoReady MCP, with cited issues to fix",
       "repository": "https://github.com/repoready-ai/mcp-plugin",
       "license": "MIT"
     }

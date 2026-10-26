@@ -2,12 +2,10 @@
 
 ## What it does
 
-Check a research codebase, or a paper's code and data, for reproducibility via the
-RepoReady MCP server: one level per check (L0 Incomplete, L1 Available, L2 Rerunnable;
-L3 Re-executed and L4 Reproduced are not offered yet), with the area results beside it and
-issues with file:line citations to fix. Two checks: an L1 check (are the code, data and
-software behind each result shared?) and an L2 check (the full review without running the
-code: workflow, integrity, automation, reuse).
+Check a research codebase, or a paper together with its code and data, for
+reproducibility via the RepoReady MCP server. Your agent reads the result and the issues to
+fix, with citations to the files and lines concerned, helps you fix them, and can check
+again. What the checks cover is described at [repoready.ai](https://repoready.ai).
 
 ## When to use / when not
 
@@ -15,14 +13,10 @@ Use when checking, improving, or certifying the reproducibility of research code
 submitting or publishing, or when you want a cited list of what to fix.
 
 This is a third-party plugin from RepoReady. Analysis runs on their servers and needs an
-account at [repoready.ai](https://repoready.ai) (institutional email joins your organization's
-plan; otherwise add your own OpenRouter API key: there are no free checks). For a local
-project the workflow zips the code (excluding `.git`, dependency dirs, and `.env` files) and
-uploads it for analysis — don't use it on code that must not leave your machine. Every check
-is priced first, shown as its expected cost ("about $X"), and starts only after your yes;
-your organization's plan or your own OpenRouter key pays, and organizations may set a daily
-cap. A check that cannot finish is not charged, unless it stopped because the paying key ran
-out of credit.
+account at [repoready.ai](https://repoready.ai); see the site for current plans and pricing.
+For a local project the workflow zips the code (excluding `.git`, dependency dirs, and `.env`
+files) and uploads it for analysis — don't use it on code that must not leave your machine.
+Paid checks are priced before they start and run only after your approval.
 
 ## Install
 
@@ -45,8 +39,8 @@ npx skills add repoready-ai/mcp-plugin@repoready
 
 **Customize → Plugins → Add → Add marketplace → Add from a repository**, then paste
 `repoready-ai/mcp-plugin` and add the **Repoready** plugin. The plugin bundles the
-skill, the `/repoready:analyze` and `/repoready:status` commands, and the RepoReady MCP connector — open the plugin's **Connectors**
-tab and connect it to sign in. No manually added custom connector is needed.
+skill, its commands and the RepoReady MCP connector — open the plugin's **Connectors** tab
+and connect it to sign in. No manually added custom connector is needed.
 
 ## Install in Claude Science
 
