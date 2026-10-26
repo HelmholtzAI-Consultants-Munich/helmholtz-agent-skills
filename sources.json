@@ -50,7 +50,7 @@
       "path": "skills",
       "homepage": "https://github.com/repoready-ai/mcp-plugin",
       "install": "npx skills add repoready-ai/mcp-plugin",
-      "about": "Analyze research code for reproducibility via the RepoReady MCP server.",
+      "about": "Check research code for reproducibility via the RepoReady MCP server.",
       "skills": [
         "repoready"
       ]

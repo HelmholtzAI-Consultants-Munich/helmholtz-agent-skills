@@ -38,7 +38,7 @@ Cursor, Codex, Copilot, Gemini CLI, and anything else that reads `SKILL.md`
 
 **[nextflow-workflow-engine](./docs/third-party/nextflow-workflow-engine.md)** — Scalable bioinformatics workflows with Nextflow and nf-core.
 
-**[repoready](./docs/third-party/repoready.md)** — Score research code for reproducibility and act on cited findings via RepoReady MCP.
+**[repoready](./docs/third-party/repoready.md)** — Check research code and papers for reproducibility and act on cited issues via RepoReady MCP.
 
 ## Install
 
